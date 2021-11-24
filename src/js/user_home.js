@@ -6,9 +6,44 @@ const container = document.getElementById( "sezioneFilm" );
 
 //Fight CLub
 //https://api.themoviedb.org/3/movie/550?api_key=18cad5ee1c5382a869938ad511f2f321
+//TODO: sortMoviArray()
 
 $('document').ready(function () {
   console.log("Document ready!");
+  //testHomeUser()
+  loadMovieFromShops()
+
+});
+
+function loadMovieFromShops(){
+  var movieArray = []
+  var data = JSON.parse(localStorage["data"])
+  data.forEach( element => {
+    if (element.type == "shop"){
+      for(var i=0; i<element.palinsesto.length; i++){
+        movieArray.push(element.palinsesto[i])
+      }
+    }
+  })
+
+    console.log(movieArray);
+
+  movieArray.forEach(element => {
+    getMovie(element.id, (response) => {
+      console.log(response);
+      displayMovie(response, response.id)
+      getMoviePoster(response.backdrop_path, (responseBis) => {
+        $('#moviePoster').append(responseBis)
+        //console.log(responseBis);
+      })
+    })
+  });
+  
+}
+
+
+
+function testHomeUser(){
   var movieArray = ["498", "499"]
   for (var i = 500; i < 600; i++) {
     movieArray.push(i.toString())
@@ -25,19 +60,7 @@ $('document').ready(function () {
       })
     })
   });
-});
-
-//TODO: sortMoviArray()
-
-/* function loadMovieList(){
-  $.getJSON("data/movieList.json", function(json) {
-		// this will show the info it in firebug console
-	   console.log(json);
-     return json
-   });
-} */
-
-
+}
 
 function getMovie(code, callback) {
   $.ajax({

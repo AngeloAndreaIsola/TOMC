@@ -4,12 +4,22 @@
     "lastname": "Isola",
     "email": "andrea.isola@me.com",
     "password": "1234",
-    "fimlComprati": ["550", "551"],
-    "filmNoleggiati": [{"id": "552", "date":"Nov 26, 2021 15:37:25"}, {"id": "560", "date":"Nov 21, 2021 15:37:25"}]
+    "fimlComprati": [{"id": "550", "date":"Nov 26, 2021 15:37:25", "price": "999"}, {"id": "551", "date":"Nov 21, 2021 15:37:25", "price": "1099"}, {"id": "553", "date":"Nov 21, 2021 15:37:25", "price": "999"}],
+    "filmNoleggiati": [{"id": "552", "date":"Nov 26, 2021 15:37:25", "price": "1099"}, {"id": "560", "date":"Nov 21, 2021 15:37:25", "price": "999"}]
 }, {
-    "type": "utente",
+    "type": "shop",
     "name": "Andrea",
     "lastname": "Rossi",
+    "shopName": "BlockBuster Piacenza",
+    "partitiaIVA": "",
     "email": "andrea.rossi@me.com",
-    "password": "1234"
+    "password": "1234",
+    "palinsesto": [{"id": "550", "quantity":"100", "price": "999"}, {"id": "551", "quantity":"100", "price": "999"}, {"id": "552", "quantity":"100", "price": "999"}, {"id": "553", "quantity":"100", "price": "999"}, {"id": "554", "quantity":"100", "price": "999"}, {"id": "556", "quantity":"100", "price": "999"}]
+}, {
+    "type": "shop",
+    "name": "Matteo",
+    "lastname": "Bianchi",
+    "email": "matteo.bianchi@me.com",
+    "password": "1234",
+    "palinsesto": [{"id": "557", "quantity":"100", "price": "999"}]
 }]
