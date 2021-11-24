@@ -1,0 +1,15 @@
+ [{
+    "type": "utente",
+    "name": "Andrea",
+    "lastname": "Isola",
+    "email": "andrea.isola@me.com",
+    "password": "1234",
+    "fimlComprati": ["550", "551"],
+    "filmNoleggiati": [{"id": "552", "date":"Nov 26, 2021 15:37:25"}, {"id": "560", "date":"Nov 21, 2021 15:37:25"}]
+}, {
+    "type": "utente",
+    "name": "Andrea",
+    "lastname": "Rossi",
+    "email": "andrea.rossi@me.com",
+    "password": "1234"
+}]
