@@ -143,6 +143,7 @@ function displayMovieC(result, idx, container) {
 }
 
 function displayTimer(date, idx){
+    //TODO: gestire data di acquisto e scadenza
     // Set the date we're counting down to
     //var countDownDate = new Date("Nov 26, 2021 15:37:25").getTime();
     var countDownDate = new Date(date).getTime();
