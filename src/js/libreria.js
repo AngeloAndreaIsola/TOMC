@@ -32,7 +32,7 @@ $('document').ready(function () {
 
     //Mostra film acquistati
     movieArrayC.forEach(element => {
-        getMovie(element, (response) => {
+        getMovie(element.id, (response) => {
             console.log(response);
             displayMovieC(response, response.id, containerC)
             getMoviePoster(response.backdrop_path, (responseBis) => {
@@ -95,7 +95,7 @@ function displayMovieN(result, idx, container, date) {
     <div class="card-body">
 
       <h5>${result.title}</h5>
-      <p>${result.genres}</p>
+      <p id ="libGenresN-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
       <p id="demo-${idx}"></p>
@@ -106,6 +106,13 @@ function displayMovieN(result, idx, container, date) {
 
     // Append newyly created card element to the container
     container.innerHTML += content;
+
+
+    result.genres.forEach(function(entry) {
+        console.log(entry);
+        console.log(entry.name);
+        $("#libGenresN-"+idx).append(entry.name + ' ');
+      })
 }
 
 function displayMovieC(result, idx, container) {
@@ -130,7 +137,7 @@ function displayMovieC(result, idx, container) {
     <div class="card-body">
 
       <h5>${result.title}</h5>
-      <p>${result.genres}</p>
+      <p id="libGenresC-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
     </div>
@@ -140,6 +147,12 @@ function displayMovieC(result, idx, container) {
 
     // Append newyly created card element to the container
     container.innerHTML += content;
+
+    result.genres.forEach(function(entry) {
+        console.log(entry);
+        console.log(entry.name);
+        $("#libGenresC-"+idx).append(entry.name + ' ');
+      })
 }
 
 function displayTimer(date, idx){

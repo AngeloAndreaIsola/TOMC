@@ -2,7 +2,7 @@ const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
 const BASE_URL_IMG = 'https://image.tmdb.org/t/p/w500/'
 const API_URL = BASE_URL + "550" + API_KEY
-const container = document.getElementById( "sezioneFilm" );
+const container = document.getElementById("sezioneFilm");
 
 //Fight CLub
 //https://api.themoviedb.org/3/movie/550?api_key=18cad5ee1c5382a869938ad511f2f321
@@ -15,18 +15,18 @@ $('document').ready(function () {
 
 });
 
-function loadMovieFromShops(){
+function loadMovieFromShops() {
   var movieArray = []
   var data = JSON.parse(localStorage["data"])
-  data.forEach( element => {
-    if (element.type == "shop"){
-      for(var i=0; i<element.palinsesto.length; i++){
+  data.forEach(element => {
+    if (element.type == "shop") {
+      for (var i = 0; i < element.palinsesto.length; i++) {
         movieArray.push(element.palinsesto[i])
       }
     }
   })
 
-    console.log(movieArray);
+  console.log(movieArray);
 
   movieArray.forEach(element => {
     getMovie(element.id, (response) => {
@@ -38,12 +38,12 @@ function loadMovieFromShops(){
       })
     })
   });
-  
+
 }
 
 
 
-function testHomeUser(){
+function testHomeUser() {
   var movieArray = ["498", "499"]
   for (var i = 500; i < 600; i++) {
     movieArray.push(i.toString())
@@ -90,8 +90,12 @@ function getMoviePoster(path, callback) {
   })
 }
 
+function printGenres(result){
 
-function displayMovie(result, idx) { 
+}
+
+
+function displayMovie(result, idx) {
   const card = document.createElement('div');
   card.classList = 'card-body';
 
@@ -113,7 +117,7 @@ function displayMovie(result, idx) {
     <div class="card-body">
 
       <h5>${result.title}</h5>
-      <p>${result.genres}</p>
+      <p id="homeGenres-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
     </div>
@@ -123,6 +127,12 @@ function displayMovie(result, idx) {
 
   // Append newyly created card element to the container
   container.innerHTML += content;
+  
+  result.genres.forEach(function(entry) {
+    console.log(entry);
+    console.log(entry.name);
+    $("#homeGenres-"+idx).append(entry.name + ' ');
+  })
 
   /*
         <div class="card" style="width: 18rem;">    //1
