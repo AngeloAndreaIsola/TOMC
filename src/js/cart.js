@@ -69,7 +69,6 @@ function displayMovieInCart(idx) {
 
   // Append newyly created card element to the container
   container.innerHTML += content;
-
 }
 
 function removeMovieFromCart(idx) {
@@ -84,7 +83,7 @@ function removeMovieFromCart(idx) {
   localStorage.setItem("cart", JSON.stringify(tempMovies));
   console.log("FIlm nel carrello: " + JSON.parse(localStorage.getItem("cart")));
   storedMovies = tempMovies
-  
+
   //pulisce html da tutti gli elementi vecchi
   $("#tabellaCarrello-body tr").remove()
 
@@ -92,4 +91,30 @@ function removeMovieFromCart(idx) {
   storedMovies.forEach(element => {
     displayMovieInCart(element)
   })
+}
+
+//TODO: IMPEDIRE DI COMPRARE UN FILM GIA ACQUISTATO O DI NOLGGIARE FIML ANCORA IN NOLEGGIO
+function purchaese() {
+  var o
+  var cart = JSON.parse(localStorage.getItem("cart"));
+  var libreria =  JSON.parse(localStorage["utente"])
+  console.log(JSON.parse(localStorage["utente"]));
+  console.log(JSON.parse(localStorage.getItem("cart")));
+  cart.forEach(element => {
+      //aggiungi a lista di fiml comprati
+      var now = new Date();
+      var price = 20
+      o = {
+        "id":element,
+        "date": now,
+        "price": price
+      }
+      o = JSON.stringify(o)
+      libreria.fimlComprati.push(o)
+  })
+
+  //salva e vuota carrello
+  localStorage.setItem("utente", JSON.stringify(libreria));
+  localStorage.setItem("cart", null);
+  $("#tabellaCarrello-body tr").remove()
 }
