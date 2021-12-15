@@ -1,11 +1,8 @@
-var obj = [{
-    type: "utente",
-    name: "Andrea",
-    lastname: "Isola",
-    email: "andrea.isola@me.com",
-    password: "1234"
-}]
 
+var type = 'utente'
+
+//TODO: verificare boostrap e jquery in html
+//TODO: Aggiungere uid ad utente
 function registerUser() {
 
     getJson()
@@ -37,36 +34,32 @@ function registerUser() {
             alert('That is to short, include 3 or more characters')
             // stop the statement if result is found true
             break
+        } else {
+            if (type == 'utente') {
+                localStorage.setItem('utente', JSON.stringify(newUser));
+                window.location.replace("./home_user.html");
+            } else {
+                localStorage.setItem('utente', JSON.stringify(newUser));
+                window.location.replace("./home_shop.html");
+            }
         }
     }
-
-    //Salva utente e display pagina inziale
-    obj.push(newUser)
-    console.log(obj);
-
-    var type = document.getElementById("registerType");
-    if (type == 'utente') {
-        window.location.replace("./home_user.html");
-    } else {
-        window.location.replace("./home_shop.html");
-    }
-
 }
 
 //Mostra o nasconde campi per negoziante e cambia tipo di untete salvato
 function togleRegisterNegozio() {
     console.log("Click su togle");
-    var type = document.getElementById("registerType");
+    //var type = document.getElementById("registerType");
     var registerNegoziate = document.getElementById("registerNegoziante");
     var registerSelectType = document.getElementById("registerSelectType")
 
 
-    if (type.value == 'utente') {
-        type.value = "negoziante"
+    if (type == 'utente') {
+        type = "negoziante"
         registerNegoziate.style.display = "inline"
         registerSelectType.firstChild.data = "Sei un utente standard?"
     } else {
-        type.value = "utente"
+        type = "utente"
         registerNegoziate.style.display = "none"
         registerSelectType.firstChild.data = "Voui aprire il tuo negozio online?"
     }

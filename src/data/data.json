@@ -4,6 +4,7 @@
     "lastname": "Isola",
     "email": "andrea.isola@me.com",
     "password": "1234",
+    "dettagliPAgamento":{"nomeCarta":"Andrea Isola", "numeroCarta":"1111111111111111111", "expM":"01", "expY":"24", "cvv":"111"},
     "fimlComprati": [{"id": "550", "date":"Nov 26, 2021 15:37:25", "price": "999"}, {"id": "551", "date":"Nov 21, 2021 15:37:25", "price": "1099"}, {"id": "553", "date":"Nov 21, 2021 15:37:25", "price": "999"}],
     "filmNoleggiati": [{"id": "552", "date":"Nov 26, 2021 15:37:25", "price": "1099"}, {"id": "560", "date":"Nov 21, 2021 15:37:25", "price": "999"}]
 }, {
@@ -19,6 +20,8 @@
     "type": "shop",
     "name": "Matteo",
     "lastname": "Bianchi",
+    "shopName": "BlockBuster Milano",
+    "partitiaIVA": "",
     "email": "matteo.bianchi@me.com",
     "password": "1234",
     "palinsesto": [{"id": "557", "quantity":"100", "price": "999"}]
