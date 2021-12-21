@@ -15,7 +15,7 @@
     "partitiaIVA": "86334519757",
     "email": "andrea.rossi@me.com",
     "password": "1234",
-    "palinsesto": [{"id": "550", "quantity":"100", "price": "999"}, {"id": "551", "quantity":"100", "price": "999"}, {"id": "552", "quantity":"100", "price": "999"}, {"id": "553", "quantity":"100", "price": "999"}, {"id": "554", "quantity":"100", "price": "999"}, {"id": "556", "quantity":"100", "price": "999"}]
+    "palinsesto": [{"id": "550", "quantity":"100", "price": "999", "shop":"BlockBuster Piacenza"}, {"id": "551", "quantity":"100", "price": "999", "shop":"BlockBuster Piacenza"}, {"id": "552", "quantity":"100", "price": "999",  "shop":"BlockBuster Piacenza"}, {"id": "553", "quantity":"100", "price": "999",  "shop":"BlockBuster Piacenza"}, {"id": "554", "quantity":"100", "price": "999",  "shop":"BlockBuster Piacenza"}, {"id": "556", "quantity":"100", "price": "999",  "shop":"BlockBuster Piacenza"}]
 }, {
     "type": "shop",
     "name": "Matteo",
@@ -24,5 +24,5 @@
     "partitiaIVA": "86334519757",
     "email": "matteo.bianchi@me.com",
     "password": "1234",
-    "palinsesto": [{"id": "557", "quantity":"100", "price": "999"}]
+    "palinsesto": [{"id": "557", "quantity":"100", "price": "999", "shop":"BlockBuster Milano"}]
 }]
