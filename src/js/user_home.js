@@ -97,16 +97,20 @@ function getMoviePoster(path, callback) {
 }
 
 
-function addMovieToCart(id) {
-  if (JSON.parse(localStorage.getItem("cart")) != null) {
+function addMovieToCart(id, shop) {
+  if (JSON.parse(localStorage.getItem("cart")) != null) {  //copia i film
     var storedMovies = JSON.parse(localStorage.getItem("cart"));
-    if (!storedMovies.includes(id)){
+    if (!storedMovies.includes(id)){ //se non include un id gia presente lo aggiunge
       storedMovies.push(id)
     }
     localStorage.setItem("cart", JSON.stringify(storedMovies));
-  } else {
+  } else { // crea un nuvo vettore
     var movies = [];
-    movies.push(id)
+    o = {
+      "id": id,
+      "shop": shop
+    }
+    movies.push(o)
     localStorage.setItem("cart", JSON.stringify(movies));
   }
   console.log("FIlm nel carrello: " + JSON.parse(localStorage.getItem("cart")));
