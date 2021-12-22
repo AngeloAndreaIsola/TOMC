@@ -158,8 +158,7 @@ function displayMovieC(result, idx, container) {
 function displayTimer(date, idx){
     //TODO: gestire data di acquisto e scadenza
     // Set the date we're counting down to
-    //var countDownDate = new Date("Nov 26, 2021 15:37:25").getTime();
-    var countDownDate = new Date(date).getTime();
+    var scandeza = new Date(date).getTime() + (60*60*1000*72);
 
     // Update the count down every 1 second
     var x = setInterval(function () {
@@ -168,7 +167,7 @@ function displayTimer(date, idx){
         var now = new Date().getTime();
         if (now != null){
         // Find the distance between now and the count down date
-        var distance = countDownDate - now;
+        var distance = scandeza - now;
 
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -183,7 +182,7 @@ function displayTimer(date, idx){
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo-"+idx).innerHTML = "EXPIRED";
+            document.getElementById("demo-"+idx).innerHTML = "SCADUTO";
         }
         }
     }, 1000);
