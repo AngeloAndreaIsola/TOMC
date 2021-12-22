@@ -5,8 +5,8 @@
     "email": "andrea.isola@me.com",
     "password": "1234",
     "dettagliPAgamento":{"nomeCarta":"Andrea Isola", "numeroCarta":"1111111111111111111", "expM":"01", "expY":"24", "cvv":"111"},
-    "fimlComprati": [{"id": "550", "date":"Nov 26, 2021 15:37:25", "price": "999", "shop":"BlockBuster Piacenza"}, {"id": "551", "date":"Nov 21, 2021 15:37:25", "price": "1099", "shop":"BlockBuster Piacenza"}, {"id": "553", "date":"Nov 21, 2021 15:37:25", "price": "999", "shop":"BlockBuster Piacenza"}],
-    "filmNoleggiati": [{"id": "552", "date":"Nov 26, 2021 15:37:25", "price": "1099", "shop":"BlockBuster Piacenza"}, {"id": "560", "date":"Nov 21, 2021 15:37:25", "price": "999", "shop":"BlockBuster Piacenza"}]
+    "fimlComprati": [{"id": "550", "date":"2021-12-21 19:29:57", "price": "999", "shop":"BlockBuster Piacenza"}, {"id": "551", "date":"2021-12-21 19:29:57", "price": "1099", "shop":"BlockBuster Piacenza"}, {"id": "553", "date":"2021-12-21 19:29:57", "price": "999", "shop":"BlockBuster Piacenza"}],
+    "filmNoleggiati": [{"id": "560", "date":"2021-12-21 19:29:57", "price": "999", "shop":"BlockBuster Piacenza"}]
 }, {
     "type": "shop",
     "name": "Andrea",
