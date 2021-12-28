@@ -11,14 +11,17 @@ function auth() {
 
 	//var jsonData = JSON.parse(data);
 	for (var i = 0; i < jsonData.length; i++) {
-		if (email === jsonData[i].email && password === jsonData[i].password) {
+		console.log(jsonData[i].email);
+		console.log(jsonData[i].password);
+
+		if (email == jsonData[i].email && password == jsonData[i].password) {
 			console.log("Credenziali corrette");
 			localStorage.setItem('utente', JSON.stringify(jsonData[i]));
 
 			if (jsonData[i].type == 'utente'){
 				window.location.replace("./home_user.html");
 				return;
-			}else{
+			}else if (jsonData[i].type == 'shop'){
 				window.location.replace("./home_shop.html");
 				return;
 			}
@@ -26,7 +29,6 @@ function auth() {
 
 		} else {
 			console.log("Credenziali non corrette");
-			return;
 		}
 	}
 }
