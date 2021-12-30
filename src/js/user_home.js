@@ -206,8 +206,9 @@ function displayMovie(result, idx, shop) {
     }
   });
 
+   //Ha noleggiato il film nascondi solo bottone noleggio
   movieArrayN.forEach(element => {
-    if (element.id == idx){ //Ha noleggiato il film nascondi solo bottone noleggio
+    if (element.id == idx){
       $("#homeAddToCartRent-"+idx).hide()
       $("#rentPrice-"+idx).hide()
     }
