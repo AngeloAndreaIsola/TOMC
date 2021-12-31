@@ -163,6 +163,7 @@ function displayMovie(result, idx, shop) {
   <div id="collapse-${idx}" class="collapse show" aria-labelledby="heading-${idx}" data-parent="#accordion">
     <div class="card-body">
 
+      <a href="movie_info.html?id=${idx}"" target="_blank"><input type="button" value="Info"></a>
       <h5>${result.title}</h5>
       <p id="homeGenres-${idx}"></p>
       <p>${result.vote_average}</p>
