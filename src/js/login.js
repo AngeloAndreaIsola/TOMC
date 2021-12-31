@@ -1,9 +1,15 @@
-
 var jsonData
 
-window.onload = function() {
-	getJson()
-  };
+window.onload = function () {
+	if (localStorage.getItem('data') != null) {
+		jsonData = JSON.parse(localStorage["data"])
+		console.log("Utenti registrati:");
+		console.log(jsonData);
+	} else {
+		console.log("Primo avvio, cario json.");
+		getJson()
+	}
+};
 
 function auth() {
 	var email = document.getElementById("emailLogin").value;
@@ -18,10 +24,10 @@ function auth() {
 			console.log("Credenziali corrette");
 			localStorage.setItem('utente', JSON.stringify(jsonData[i]));
 
-			if (jsonData[i].type == 'utente'){
+			if (jsonData[i].type == 'utente') {
 				window.location.replace("./home_user.html");
 				return;
-			}else if (jsonData[i].type == 'shop'){
+			} else if (jsonData[i].type == 'shop') {
 				window.location.replace("./home_shop.html");
 				return;
 			}
@@ -33,15 +39,16 @@ function auth() {
 	}
 }
 
-function getJson(){
-	$.getJSON("data/data.json", function(json) {
+function getJson() {
+	$.getJSON("data/data.json", function (json) {
 		// this will show the info it in firebug console
-	   console.log(json);
-	   jsonData = json;
-	   init(json);
-   });
+		console.log("Caricato utenti pre impostati:");
+		console.log(json);
+		jsonData = json;
+		init(json);
+	});
 }
 
-function init(json){
+function init(json) {
 	localStorage.setItem('data', JSON.stringify(json));
 }
