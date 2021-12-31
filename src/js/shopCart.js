@@ -1,4 +1,5 @@
-data = JSON.parse(localStorage["utente"])
+data = JSON.parse(localStorage["data"])
+utente = JSON.parse(localStorage["utente"])
 const container = document.getElementById("tabellaCarrello-body");
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
 const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
@@ -131,11 +132,24 @@ function purchaese() {
         }
 
         libreria.palinsesto.push(o)
+        //TODO: AGGIUGNE FILM SOLO AD UTENTE E NON A DATA
+
+
+        //salva per utente e data
+        localStorage.setItem("utente", JSON.stringify(libreria));
+        data.forEach(user => {
+            if (user.email == utente.email) {
+                console.log("MATCH FOUND");
+                user.palinsesto = libreria.palinsesto
+                localStorage.setItem("data", JSON.stringify(data));
+            }
+        })
 
     })
 
-    //salva e vuota carrello
-    localStorage.setItem("utente", JSON.stringify(libreria));
+
+
+    //Svuota carrello
     localStorage.setItem("shopCart", null);
     $("#tabellaCarrello-body tr").remove()
 }
