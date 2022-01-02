@@ -20,7 +20,6 @@ $('document').ready(function () {
     //Mostra film noleggiati
     movieArrayN.forEach(element => {
         getMovie(element.id, (response) => {
-            console.log(response);
             displayMovieN(response, response.id, containerN, element.date)
             getMoviePoster(response.backdrop_path, (responseBis) => {
                 $('#moviePoster').append(responseBis)
@@ -33,7 +32,6 @@ $('document').ready(function () {
     //Mostra film acquistati
     movieArrayC.forEach(element => {
         getMovie(element.id, (response) => {
-            console.log(response);
             displayMovieC(response, response.id, containerC)
             getMoviePoster(response.backdrop_path, (responseBis) => {
                 $('#moviePoster').append(responseBis)
@@ -113,8 +111,6 @@ function displayMovieN(result, idx, container, date) {
 
 
     result.genres.forEach(function (entry) {
-        console.log(entry);
-        console.log(entry.name);
         $("#libGenresN-" + idx).append(entry.name + ' ');
     })
 }
@@ -157,8 +153,6 @@ function displayMovieC(result, idx, container) {
     container.innerHTML += content;
 
     result.genres.forEach(function (entry) {
-        console.log(entry);
-        console.log(entry.name);
         $("#libGenresC-" + idx).append(entry.name + ' ');
     })
 }

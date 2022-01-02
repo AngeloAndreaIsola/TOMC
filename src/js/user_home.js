@@ -36,7 +36,6 @@ function loadMovieFromShops() {
 
   movieArray.forEach(element => {
     getMovie(element.movie.id, (response) => {
-      console.log(response);
       displayMovie(response, response.id, element.shop)
       getMoviePoster(response.backdrop_path, (responseBis) => {
         $('#moviePoster').append(responseBis)
@@ -195,7 +194,6 @@ function displayMovie(result, idx, shop) {
 
   //Controlla se il film sia gia acquistato o noleggiato e nasconde i bottoni
   utente = JSON.parse(localStorage["utente"])
-  console.log("Data: " + utente);
   var movieArrayN = utente.filmNoleggiati
   var movieArrayC = utente.fimlComprati
   movieArrayC.forEach(element => {
