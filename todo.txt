@@ -4,7 +4,7 @@
         Quando riuove un film lo cancella anche dalla libreria
 aggiungere "grazie per lacquisto in carrello"
 al posto di avere due lsite per i film usarne una con type
-rendere scelta di acquisto o noleggio al pagamento
 Aggiugnere pulsante esci
 aggiungere nome negozio a nuove aggiunte
 non torna indietro da movie info
+far definire prezzo al negozio all'acquisot
