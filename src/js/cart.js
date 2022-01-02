@@ -142,6 +142,14 @@ function purchaese() {
   })
 
   //salva e vuota carrello
+
+  data =  JSON.parse(localStorage.getItem("data"));
+  for (i=0; i<data.length; i++){
+    if( data[i].email == libreria.email){
+      data[i] = libreria
+    }
+  }
+  localStorage.setItem("data", JSON.stringify(data));
   localStorage.setItem("utente", JSON.stringify(libreria));
   localStorage.setItem("cart", null);
   $("#tabellaCarrello-body tr").remove()
