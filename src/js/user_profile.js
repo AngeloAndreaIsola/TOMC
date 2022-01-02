@@ -67,7 +67,7 @@ function displayMovieInCart(idx, type, element, title) {
       <td>type</td>
       <td>data</td>
       <td>${element.shop}</td>
-      <td>${element.price/100 + "€"}</td>
+      <td>${element.price + "€"}</td>
       </tr>
     `;
   
