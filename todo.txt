@@ -7,3 +7,4 @@ al posto di avere due lsite per i film usarne una con type
 rendere scelta di acquisto o noleggio al pagamento
 Aggiugnere pulsante esci
 aggiungere nome negozio a nuove aggiunte
+non torna indietro da movie info
