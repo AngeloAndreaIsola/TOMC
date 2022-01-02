@@ -135,23 +135,28 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
       <p id="demo-${idx}"></p>
-      <p id="buyPrice-${idx}">prezzo acquisto: ${buyPrice} <button onClick="modifyBuyPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      <p id="buyPrice-${idx}">prezzo acquisto: ${buyPrice}</p>
+      <button onClick="modifyBuyPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
       class="bi bi-pencil-square" viewBox="0 0 16 16">
       <path
         d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
       <path fill-rule="evenodd"
         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-    </svg></button></p>
-    <p id="rentPrice-${idx}">prezzo noleggio: ${rentPrice}<button onClick="modifyRentPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+    </svg></button>
+
+    
+    <p id="rentPrice-${idx}">prezzo noleggio: ${rentPrice}</p>
+    <button onClick="modifyRentPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
     class="bi bi-pencil-square" viewBox="0 0 16 16">
     <path
       d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
     <path fill-rule="evenodd"
       d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-  </svg></button></p>
+  </svg></button>
 
   <p>riuomvi da palisesto</p>
-  <button id="remove-${idx}" onclick="removeMovieFromPalinsesto(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <button id="remove-${idx}" onclick="removeMovieFromPalinsesto(${idx})">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg></button>
 
@@ -262,9 +267,52 @@ function removeMovieFromPalinsesto(id) {
 
 function modifyBuyPrice(id) {
   console.log("modificando prezzo acquisto di:  " + id);
+
+  var newCognome = prompt("Nuovo prezzo di acquisto: ");
+  if (newCognome != null || newCognome == "" || newCognome == "") {
+    document.getElementById("buyPrice-" + id).innerHTML = "prezzo acquisto: " + newCognome
+
+    var utente = JSON.parse(localStorage.getItem("utente"));
+    utente.palinsesto.forEach(element => {
+      if (element.id == id) {
+        element.price = newCognome
+      }
+    })
+    localStorage.setItem('utente', JSON.stringify(utente));
+
+    var data = JSON.parse(localStorage.getItem("data"));
+    for(var i=0; i<data.length; i++) {
+      if(data[i].email == utente.email){
+        console.log("trovato");
+        data[i] = utente
+      }
+    }
+    localStorage.setItem('data', JSON.stringify(data));
+  }
 }
 
 function modifyRentPrice(id) {
   console.log("modificando prezzo noleggio di:  " + id);
+  var newCognome = prompt("Nuovo prezzo di noleggio: ");
+  if (newCognome != null || newCognome == "" || newCognome == "") {
+    document.getElementById("buyPrice-" + id).innerHTML = "prezzo noleggio: " + newCognome
+
+    var utente = JSON.parse(localStorage.getItem("utente"));
+    utente.palinsesto.forEach(element => {
+      if (element.id == id) {
+        element.priceRent = newCognome
+      }
+    })
+    localStorage.setItem('utente', JSON.stringify(utente));
+
+    var data = JSON.parse(localStorage.getItem("data"));
+    for(var i=0; i<data.length; i++) {
+      if(data[i].email == utente.email){
+        console.log("trovato");
+        data[i] = utente
+      }
+    }
+    localStorage.setItem('data', JSON.stringify(data));
+  }
 
 }
