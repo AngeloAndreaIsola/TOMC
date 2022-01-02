@@ -1,7 +1,7 @@
         Aggiungere pulsante esxi da account
         negozio puo cancellare film, ma deve rimanere all'utente
         chiamare getCredits e getDetails
-Quando riuove un film lo cancella anche dalla libreria
+        Quando riuove un film lo cancella anche dalla libreria
 aggiungere "grazie per lacquisto in carrello"
 al posto di avere due lsite per i film usarne una con type
 rendere scelta di acquisto o noleggio al pagamento

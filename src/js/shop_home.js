@@ -115,7 +115,7 @@ function displayPalinsesto(result, idx, container, date) {
 
     // Construct card content
     const content = `
-  <div class="card">
+  <div class="card" id="card-${idx}">
   <div class="crop">
   <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
   </div>
@@ -177,7 +177,7 @@ function displaySearchResult(result, idx, container) {
 
     // Construct card content
     const content = `
-  <div class="card" id="card-${idx}">
+  <div class="card">
   <div class="crop">
   <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
   </div>
@@ -254,10 +254,8 @@ function removeMovieFromPalinsesto(id){
     localStorage.setItem("data", JSON.stringify(data));
     localStorage.setItem("utente", JSON.stringify(utente));
 
+    $("#card-"+id).remove()
   
-    //pulisce html da tutti gli elementi vecchi
-    $("#card-"+id).hide()
-
     console.log(id + " rimosso dal palinsesto");
   
 }
