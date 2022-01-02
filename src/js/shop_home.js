@@ -149,6 +149,12 @@ function displayPalinsesto(result, idx, container, date) {
     <path fill-rule="evenodd"
       d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
   </svg></button></p>
+
+  <p>riuomvi da palisesto</p>
+  <button id="remove-${idx}" onclick="removeMovieFromPalinsesto(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg></button>
+
     </div>
   </div>
 </div>
@@ -171,7 +177,7 @@ function displaySearchResult(result, idx, container) {
 
     // Construct card content
     const content = `
-  <div class="card">
+  <div class="card" id="card-${idx}">
   <div class="crop">
   <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
   </div>
@@ -224,4 +230,34 @@ function addMovieToCart(id){
       }
       console.log("FIlm nel carrello: ")
       console.log(JSON.parse(localStorage.getItem("shopCart")));
+}
+
+function removeMovieFromPalinsesto(id){
+    //aggiorna la lista di film nel carrello
+    var utente = JSON.parse(localStorage.getItem("utente"));
+    var tempMovies = [];
+    utente.palinsesto.forEach(element => {
+      if (element.id != id) {
+        tempMovies.push(element)
+      }
+    })
+    utente.palinsesto = tempMovies
+
+    
+    //salva
+    data =  JSON.parse(localStorage.getItem("data"));
+    for (i=0; i<data.length; i++){
+      if( data[i].email == utente.email){
+        data[i] = utente
+      }
+    }
+    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("utente", JSON.stringify(utente));
+
+  
+    //pulisce html da tutti gli elementi vecchi
+    $("#card-"+id).hide()
+
+    console.log(id + " rimosso dal palinsesto");
+  
 }

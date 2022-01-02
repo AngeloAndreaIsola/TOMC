@@ -5,3 +5,4 @@ al posto di avere due lsite per i film usarne una con type
 negozio puo cancellare film, ma deve rimanere all'utente
 rendere scelta di acquisto o noleggio al pagamento
 chiamare getCredits e getDetails
+Quando riuove un film lo cancella anche dalla libreria
