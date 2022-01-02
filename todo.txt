@@ -1,3 +1,7 @@
 
-Aggiungere pulsante esxi da account
+        Aggiungere pulsante esxi da account
 aggiungere "grazie per lacquisto in carrello"
+al posto di avere due lsite per i film usarne una con type
+negozio puo cancellare film, ma deve rimanere all'utente
+rendere scelta di acquisto o noleggio al pagamento
+chiamare getCredits e getDetails
