@@ -22,11 +22,9 @@ function loadMovieFromShops() {
     if (element.type == "shop") {
       for (var i = 0; i < element.palinsesto.length; i++) {
         o = {
-          "movie":element.palinsesto[i],
-          "shop":element.shopName
+          "movie": element.palinsesto[i]
         }
         movieArray.push(o)
-
         //movieArray.push(element.palinsesto[i])
       }
     }
@@ -34,9 +32,13 @@ function loadMovieFromShops() {
   console.log("Movie Array");
   console.log(movieArray);
 
+  var movieArray= movieArray.filter((v,i,a)=>a.findIndex(t=>(t.movie.id === v.movie.id))===i)
+  console.log("Movie Array senza duplicati");
+  console.log(movieArray);
+
   movieArray.forEach(element => {
     getMovie(element.movie.id, (response) => {
-      displayMovie(response, response.id, element.shop)
+      displayMovie(response, response.id, element)
       getMoviePoster(response.backdrop_path, (responseBis) => {
         $('#moviePoster').append(responseBis)
         //console.log(responseBis);
@@ -58,7 +60,7 @@ function testHomeUser() {
   movieArray.forEach(element => {
     getMovie(element, (response) => {
       console.log(response);
-      displayMovie(response, response.id, element.shop)
+      displayMovie(response, response.id, element)
       getMoviePoster(response.backdrop_path, (responseBis) => {
         $('#moviePoster').append(responseBis)
         //console.log(responseBis);
@@ -97,7 +99,7 @@ function getMoviePoster(path, callback) {
 
 
 function addMovieToCartBuy(id) { //TODO: AGGUNGERE OCNTROLLO PER film ducplati
-  if (JSON.parse(localStorage.getItem("cart")) != null) {  //copia i film
+  if (JSON.parse(localStorage.getItem("cart")) != null) { //copia i film
     var storedMovies = JSON.parse(localStorage.getItem("cart"));
     var o = {
       "id": id,
@@ -119,7 +121,7 @@ function addMovieToCartBuy(id) { //TODO: AGGUNGERE OCNTROLLO PER film ducplati
 }
 
 function addMovieToCartRent(id) { //TODO: AGGUNGERE OCNTROLLO PER film ducplati
-  if (JSON.parse(localStorage.getItem("cart")) != null) {  //copia i film
+  if (JSON.parse(localStorage.getItem("cart")) != null) { //copia i film
     var storedMovies = JSON.parse(localStorage.getItem("cart"));
     var o = {
       "id": id,
@@ -141,7 +143,7 @@ function addMovieToCartRent(id) { //TODO: AGGUNGERE OCNTROLLO PER film ducplati
 }
 
 
-function displayMovie(result, idx, shop) {
+function displayMovie(result, idx, element) {
   const card = document.createElement('div');
   card.classList = 'card-body';
 
@@ -167,7 +169,7 @@ function displayMovie(result, idx, shop) {
       <p id="homeGenres-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
-      <p>${shop}</p>
+      <p>${element.movie.shop}</p>
       <button id="homeAddToCartBuy-${idx}" onclick="addMovieToCartBuy(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -197,19 +199,19 @@ function displayMovie(result, idx, shop) {
   var movieArrayN = utente.filmNoleggiati
   var movieArrayC = utente.fimlComprati
   movieArrayC.forEach(element => {
-    if (element.id == idx){ //Ha acquistato il film nascondi tutti i bottoni
-      $("#homeAddToCartBuy-"+idx).hide()
-      $("#homeAddToCartRent-"+idx).hide()
-      $("#rentPrice-"+idx).hide()
-      $("#buyPrice-"+idx).hide()
+    if (element.id == idx) { //Ha acquistato il film nascondi tutti i bottoni
+      $("#homeAddToCartBuy-" + idx).hide()
+      $("#homeAddToCartRent-" + idx).hide()
+      $("#rentPrice-" + idx).hide()
+      $("#buyPrice-" + idx).hide()
     }
   });
 
-   //Ha noleggiato il film nascondi solo bottone noleggio
+  //Ha noleggiato il film nascondi solo bottone noleggio
   movieArrayN.forEach(element => {
-    if (element.id == idx){
-      $("#homeAddToCartRent-"+idx).hide()
-      $("#rentPrice-"+idx).hide()
+    if (element.id == idx) {
+      $("#homeAddToCartRent-" + idx).hide()
+      $("#rentPrice-" + idx).hide()
     }
   });
 
