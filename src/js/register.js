@@ -1,4 +1,3 @@
-
 var type = 'utente'
 
 //TODO: verificare boostrap e jquery in html
@@ -9,18 +8,21 @@ function registerUser() {
     var registerEmail = document.getElementById("emailRegister").value;
     var registerPassword = document.getElementById("passwordRegister").value;
 
-    newUser = {
-        type: "utente",
-        name: registerNome,
-        lastname: registerCognome,
-        email: registerEmail,
-        password: registerPassword
+    data = JSON.parse(localStorage["data"])
+    var newUser = {
+        email: "",
+        lastname: "",
+        name: "",
+        password: "",
+        type: "",
+        filmNoleggiati: [],
+        fimlComprati: []
     }
 
     //Controllo su input
-    for (var i = 0; i < obj.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         // check if new username is equal to any already created usernames
-        if (registerEmail == obj[i].email) {
+        if (registerEmail == data[i].email) {
             // alert user that the username is take
             alert('That email is alreat in user, please choose another')
             // stop the statement if result is found true
@@ -33,9 +35,25 @@ function registerUser() {
             break
         } else {
             if (type == 'utente') {
+                newUser.email = registerEmail
+                newUser.name = registerNome
+                newUser.lastname = registerCognome
+                newUser.password = registerPassword
+                newUser.type = type
+
+                data.push(newUser)
+                localStorage.setItem('data', JSON.stringify(data));
                 localStorage.setItem('utente', JSON.stringify(newUser));
                 window.location.replace("./user_home.html");
             } else {
+                newUser.email = registerEmail
+                newUser.name = registerNome
+                newUser.lastname = registerCognome
+                newUser.password = registerPassword
+                newUser.type = type
+
+                data.push(newUser)
+                localStorage.setItem('data', JSON.stringify(data));
                 localStorage.setItem('utente', JSON.stringify(newUser));
                 window.location.replace("./home_shop.html");
             }
@@ -62,8 +80,8 @@ function togleRegisterNegozio() {
     }
 }
 
- 
 
 
- //FIXME: Primo click non fuzniona
- //TODO: Salvare nuovo utente in local storage
+
+//FIXME: Primo click non fuzniona
+//TODO: Salvare nuovo utente in local storage

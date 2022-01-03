@@ -201,22 +201,28 @@ function displayMovie(result, idx, element) {
   utente = JSON.parse(localStorage["utente"])
   var movieArrayN = utente.filmNoleggiati
   var movieArrayC = utente.fimlComprati
-  movieArrayC.forEach(element => {
-    if (element.id == idx) { //Ha acquistato il film nascondi tutti i bottoni
-      $("#homeAddToCartBuy-" + idx).hide()
-      $("#homeAddToCartRent-" + idx).hide()
-      $("#rentPrice-" + idx).hide()
-      $("#buyPrice-" + idx).hide()
-    }
-  });
+
+  if(movieArrayC != null || movieArrayC != undefined){
+    movieArrayC.forEach(element => {
+      if (element.id == idx) { //Ha acquistato il film nascondi tutti i bottoni
+        $("#homeAddToCartBuy-" + idx).hide()
+        $("#homeAddToCartRent-" + idx).hide()
+        $("#rentPrice-" + idx).hide()
+        $("#buyPrice-" + idx).hide()
+      }
+    });
+  }
+
 
   //Ha noleggiato il film nascondi solo bottone noleggio
-  movieArrayN.forEach(element => {
-    if (element.id == idx) {
-      $("#homeAddToCartRent-" + idx).hide()
-      $("#rentPrice-" + idx).hide()
-    }
-  });
+  if(movieArrayN != null || movieArrayN != undefined){
+    movieArrayN.forEach(element => {
+      if (element.id == idx) {
+        $("#homeAddToCartRent-" + idx).hide()
+        $("#rentPrice-" + idx).hide()
+      }
+    });
+  }
 
 
 

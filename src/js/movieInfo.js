@@ -142,21 +142,27 @@ function displayShops(idx, element) {
   }
 
   //se lo ha noleggiato disabilita pulsanti noleggio
-  utente.filmNoleggiati.forEach(element => {
-    if (element.id == idx) {
-      console.log("Il film è gia stato noleggiato, non è possibile noleggiarlo di nuovo");
-      $(".rent").prop("disabled", true);
-    }
-  })
+  if(utente.filmNoleggiati!= null || utente.filmNoleggiati != undefined){
+    utente.filmNoleggiati.forEach(element => {
+      if (element.id == idx) {
+        console.log("Il film è gia stato noleggiato, non è possibile noleggiarlo di nuovo");
+        $(".rent").prop("disabled", true);
+      }
+    })
+  }
+
 
   //se lo ha acquistato disabilita tutti i pulanti
-  utente.fimlComprati.forEach(element => {
-    if (element.id == idx) {
-      console.log("Il film è gia stato comprato, non è possibile noleggiarlo di nuovo");
-      $(".buy").prop("disabled", true);
-      $(".rent").prop("disabled", true);
-    }
-  })
+  if(utente.fimlComprati!= null || utente.fimlComprati != undefined){
+    utente.fimlComprati.forEach(element => {
+      if (element.id == idx) {
+        console.log("Il film è gia stato comprato, non è possibile noleggiarlo di nuovo");
+        $(".buy").prop("disabled", true);
+        $(".rent").prop("disabled", true);
+      }
+    })
+  }
+
 
 }
 
