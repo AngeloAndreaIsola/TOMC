@@ -5,6 +5,6 @@
 aggiungere "grazie per lacquisto in carrello"
 al posto di avere due lsite per i film usarne una con type
 Aggiugnere pulsante esci
-aggiungere nome negozio a nuove aggiunte
+        aggiungere nome negozio a nuove aggiunte
 non torna indietro da movie info
-far definire prezzo al negozio all'acquisot
+        far definire prezzo al negozio all'acquisot

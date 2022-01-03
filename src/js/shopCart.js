@@ -54,8 +54,8 @@ function displayMovieInCart(idx, type, title) {
   </svg></button></td>
     <td>${idx}</td>
     <td>${title}</td>
-    <td><input type="number" min="1"></td>
-    <td><input type="number" min="1"></td>
+    <td><input id="prezzoAcquisto" type="number" min="1"></td>
+    <td><input id="prezzoNoleggio" type="number" min="1"></td>
     <td>1000€</td>
     </tr>
   `;
@@ -123,12 +123,13 @@ function purchaese() {
         var now = date + ' ' + time;
 
 
-        var price = 20
         o = {
             "id": element.id,
             "type": element.type,
             "date": now,
-            "price": price
+            "price": $("#prezzoAcquisto").val(),
+            "priceRent": $("#prezzoNoleggio").val(),
+            "shop": libreria.shopName
         }
 
         libreria.palinsesto.push(o)
