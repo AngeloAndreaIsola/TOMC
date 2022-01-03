@@ -34,7 +34,7 @@ function registerUser() {
         } else {
             if (type == 'utente') {
                 localStorage.setItem('utente', JSON.stringify(newUser));
-                window.location.replace("./home_user.html");
+                window.location.replace("./user_home.html");
             } else {
                 localStorage.setItem('utente', JSON.stringify(newUser));
                 window.location.replace("./home_shop.html");

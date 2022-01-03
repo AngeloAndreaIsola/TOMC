@@ -25,7 +25,7 @@ function auth() {
 			localStorage.setItem('utente', JSON.stringify(jsonData[i]));
 
 			if (jsonData[i].type == 'utente') {
-				window.location.replace("./home_user.html");
+				window.location.replace("./user_home.html");
 				return;
 			} else if (jsonData[i].type == 'shop') {
 				window.location.replace("./home_shop.html");
