@@ -71,6 +71,12 @@
          "price": "9,99",
          "priceRent": "5,99",
          "shop": "BlockBuster Piacenza"
+     }],
+     "vendite": [{
+         "id": "550",
+         "price": "9,99",
+         "type": "buy",
+         "date": "2022-01-02 19:29:57"
      }]
  }, {
      "type": "shop",
@@ -85,5 +91,11 @@
          "price": "9,99",
          "priceRent": "5,99",
          "shop": "BlockBuster Milano"
+     }],
+     "vendite": [{
+         "id": "557",
+         "price": "9,99",
+         "type": "buy",
+         "date": "2022-01-02 19:29:57"
      }]
  }]

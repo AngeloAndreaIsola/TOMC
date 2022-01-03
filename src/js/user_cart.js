@@ -5,7 +5,10 @@ const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 
 $('document').ready(function () {
   console.log("Document ready!");
-  console.log("Film nel carrello:");
+  if(localStorage["cart"] != null || localStorage["cart"]!=undefined){
+    console.log("Film nel carrello:");
+    console.log(JSON.parse(localStorage.getItem("cart")));
+  }
 
   // loadMovieFromShops()
   var movieArray = []
@@ -43,7 +46,6 @@ $('document').ready(function () {
 
       //display movie in cart
       getMovie(element.id, response => {
-        console.log(response);
         displayMovieInCart(element.id, element.type, currentMovie, response.title  )
       })
     })
@@ -115,8 +117,6 @@ function purchaese() {
   var o
   var cart = JSON.parse(localStorage.getItem("cart"));
   var libreria = JSON.parse(localStorage["utente"])
-  console.log(JSON.parse(localStorage["utente"]));
-  console.log(JSON.parse(localStorage.getItem("cart")));
   cart.forEach(element => {
     //aggiungi a lista di fiml comprati/noleggiati
     var today = new Date();
@@ -138,10 +138,11 @@ function purchaese() {
     }else if (element.type == "noleggio"){
       libreria.filmNoleggiati.push(o)
     }
+
+    addToStat(o, element.shop)
   })
 
   //salva e vuota carrello
-
   data =  JSON.parse(localStorage.getItem("data"));
   for (i=0; i<data.length; i++){
     if( data[i].email == libreria.email){
@@ -152,4 +153,18 @@ function purchaese() {
   localStorage.setItem("utente", JSON.stringify(libreria));
   localStorage.setItem("cart", null);
   $("#tabellaCarrello-body tr").remove()
+
+  //Aggiungi vendita a statistiche negoziante
+
+}
+
+function addToStat(obj, shop){
+  var data = JSON.parse(localStorage["data"])
+  data.forEach(element => {
+    if(element.shopName == shop){
+      element.vendite.push(obj)
+    }
+  })
+  localStorage.setItem("data", JSON.stringify(data))
+  console.log("Aggiunto ventita a statiste venditore");
 }
