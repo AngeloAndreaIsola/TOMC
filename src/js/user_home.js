@@ -169,7 +169,6 @@ function displayMovie(result, idx, element) {
       <p id="homeGenres-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
-      <p>${element.movie.shop}</p>
 
       <!-- bottono acquisto noleggio-->
       <!-- 
