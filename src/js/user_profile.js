@@ -11,6 +11,12 @@ $('document').ready(function () {
     document.getElementById("profileLastname").innerHTML = data.lastname;
     document.getElementById("profileEmail").innerHTML = data.email;
 
+    document.getElementById("numeroCarta").innerHTML = data.dettagliPAgamento.numeroCarta;
+    document.getElementById("Intestatario").innerHTML = data.dettagliPAgamento.nomeCarta;
+    document.getElementById("cvv").innerHTML = data.dettagliPAgamento.cvv;
+    document.getElementById("expM").innerHTML = data.dettagliPAgamento.expM;
+    document.getElementById("expA").innerHTML = data.dettagliPAgamento.expY;
+
 
     // prende lista di tutti i film acqustati
     data = JSON.parse(localStorage["utente"])
@@ -75,3 +81,19 @@ function displayMovieInCart(idx, type, element, title) {
     container.innerHTML += content;
   }
 
+  function deleteProfile(){
+    var data = JSON.parse(localStorage["data"])
+    var utente = JSON.parse(localStorage["utente"])
+    var newData = []
+
+    for(var i=0; i<data.length; i++){
+        if(data[i].email != utente.email){
+            newData.push(data[i])
+        }
+    }
+    
+    localStorage.setItem('data', JSON.stringify(newData));
+    localStorage.removeItem("utente");
+    console.log("Profilo cancellato");
+    window.location.replace("./login.html");
+}
