@@ -4,9 +4,6 @@ var type = 'utente'
 //TODO: verificare boostrap e jquery in html
 //TODO: Aggiungere uid ad utente
 function registerUser() {
-
-    getJson()
-
     var registerNome = document.getElementById("nomeRegister").value;
     var registerCognome = document.getElementById("cognomeRegister").value;
     var registerEmail = document.getElementById("emailRegister").value;
@@ -66,18 +63,6 @@ function togleRegisterNegozio() {
 }
 
  
-function init(json){
-	localStorage.setItem('data', json);
-}
-
-function getJson(){
-	$.getJSON("js/data.json", function(json) {
-		// this will show the info it in firebug console
-	   console.log(json);
-	   jsonData = json;
-	   init(json);
-   });
-}
 
 
  //FIXME: Primo click non fuzniona
