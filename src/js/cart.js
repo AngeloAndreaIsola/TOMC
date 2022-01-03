@@ -6,7 +6,6 @@ const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 $('document').ready(function () {
   console.log("Document ready!");
   console.log("Film nel carrello:");
-  console.log(JSON.parse(localStorage["cart"]));
 
   // loadMovieFromShops()
   var movieArray = []
@@ -29,7 +28,7 @@ $('document').ready(function () {
 
 
   var storedMovies = JSON.parse(localStorage.getItem("cart"));
-  if (storedMovies == null) {
+  if (storedMovies == null || storedMovies == undefined) {
     $("#tabellaCarrello").hide()
     $("#carrelloVuoto").show()
   } else {
