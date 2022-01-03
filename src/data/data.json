@@ -6,9 +6,9 @@
      "password": "1234",
      "dettagliPAgamento": {
          "nomeCarta": "Andrea Isola",
-         "numeroCarta": "1111111111111111111",
-         "expM": "01",
-         "expY": "24",
+         "numeroCarta": "4485686440874909",
+         "expM": "10",
+         "expY": "23",
          "cvv": "111"
      },
      "fimlComprati": [{
@@ -77,7 +77,14 @@
          "price": "9,99",
          "type": "buy",
          "date": "2022-01-02 19:29:57"
-     }]
+     }],
+     "dettagliPAgamento": {
+        "nomeCarta": "Andrea Isola",
+        "numeroCarta": "4485686440874909",
+        "expM": "10",
+        "expY": "23",
+        "cvv": "111"
+    }
  }, {
      "type": "shop",
      "name": "Matteo",
@@ -95,7 +102,21 @@
      "vendite": [{
          "id": "557",
          "price": "9,99",
-         "type": "buy",
+         "type": "acquisto",
          "date": "2022-01-02 19:29:57"
-     }]
+     },
+     {
+        "id": "557",
+        "price": "9,99",
+        "type": "noleggio",
+        "date": "2022-01-02 19:29:57"
+    }
+    ],
+     "dettagliPAgamento": {
+        "nomeCarta": "Andrea Isola",
+        "numeroCarta": "4485686440874909",
+        "expM": "10",
+        "expY": "23",
+        "cvv": "111"
+    }
  }]
