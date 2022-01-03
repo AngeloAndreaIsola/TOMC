@@ -1,9 +1,10 @@
 const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
 const BASE_URL_IMG = 'https://image.tmdb.org/t/p/w500/'
-const BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/movie'
+const BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/multi'
 const API_URL = BASE_URL + "550" + API_KEY
 const searchURL = BASE_URL + '/search/movie' + API_KEY;
+const searchActorURL = "http://api.themoviedb.org/3/person/" 
 const container = document.getElementById("palinsesto");
 const risultatoRicerca = document.getElementById("risultati_ricerca");
 const form = document.getElementById('addMovieForm');
@@ -44,7 +45,18 @@ $('document').ready(function () {
     searchMovie(search.value, response => {
       console.log(response);
       response.results.forEach(element => {
-        displaySearchResult(element, element.id, risultatoRicerca)
+        if(element.media_type == "person"){
+          searchActor(element.id, res => {
+            console.log("RICERCA ATTORE:");
+            console.log(res);
+            res.cast.forEach(e => {
+              displaySearchResult(e, e.id, risultatoRicerca)
+            })
+          })
+
+        }else{
+          displaySearchResult(element, element.id, risultatoRicerca)
+        }
       })
     })
 
@@ -55,10 +67,23 @@ $('document').ready(function () {
 function searchMovie(keyword, callback) {
   //sostiusce spazi con +
   keyword = keyword.replace(/ /g, "+");
-
   $.ajax({
     type: "GET",
     url: BASE_URL_SEARCH + API_KEY + "&query=" + keyword,
+    data: JSON.stringify({}),
+    success: callback,
+    error: function (error) {
+      console.log(error.responseText);
+    }
+  })
+}
+
+function searchActor(id, callback) {
+  //sostiusce spazi con +
+//http://api.themoviedb.org/3/person/62/movie_credits?api_key=###
+  $.ajax({
+    type: "GET",
+    url: searchActorURL+id+"/movie_credits"+API_KEY,
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
