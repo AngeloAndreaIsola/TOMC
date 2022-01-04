@@ -124,6 +124,14 @@ function purchaese() {
       "price": element.price
     }
     
+    //se è gia noelggiato acquista
+    for(var i=0; i<libreria.filmNoleggiati.length; i++){
+      if(o.id==libreria.filmNoleggiati[i].id && element.type == "acquisto"){
+        libreria.filmNoleggiati.splice(i,1);
+      }
+    }
+    console.log("chiudi 3");
+    
     if(element.type == "acquisto"){
       libreria.fimlComprati.push(o)
     }else if (element.type == "noleggio"){
