@@ -126,20 +126,8 @@ function displayShops(idx, element) {
   // Append newyly created card element to the container
   container.innerHTML += content;
 
-  //se è gia nel carrello disabilità tutti pulsanti
+
    utente = JSON.parse(localStorage["utente"])
-  var carrello
-  if (localStorage["cart"] != null || localStorage["cart"] != undefined) {
-    carrello = JSON.parse(localStorage["cart"])
-    console.log(carrello);
-    carrello.forEach(element => {
-      if (element.id == idx) {
-        console.log("Il film è gia nel carrello, non è possibile aggiungerlo di nuovo");
-        $(".buy").prop("disabled", true);
-        $(".rent").prop("disabled", true);
-      }
-    })
-  }
 
   //se lo ha noleggiato disabilita pulsanti noleggio
   if(utente.filmNoleggiati!= null || utente.filmNoleggiati != undefined){
@@ -157,6 +145,20 @@ function displayShops(idx, element) {
     utente.fimlComprati.forEach(element => {
       if (element.id == idx) {
         console.log("Il film è gia stato comprato, non è possibile noleggiarlo di nuovo");
+        $(".buy").prop("disabled", true);
+        $(".rent").prop("disabled", true);
+      }
+    })
+  }
+
+    //se è gia nel carrello disabilità tutti pulsanti
+  var carrello
+  if (JSON.parse(localStorage["cart"]) != null || localStorage["cart"] != undefined) {
+    carrello = JSON.parse(localStorage["cart"])
+    console.log(carrello);
+    carrello.forEach(element => {
+      if (element.id == idx) {
+        console.log("Il film è gia nel carrello, non è possibile aggiungerlo di nuovo");
         $(".buy").prop("disabled", true);
         $(".rent").prop("disabled", true);
       }
