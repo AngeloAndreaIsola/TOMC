@@ -160,7 +160,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
       <p id="demo-${idx}"></p>
-      <p id="buyPrice-${idx}">prezzo acquisto: ${buyPrice}</p>
+      <p id="buyPrice-${idx}">prezzo acquisto: ${buyPrice/100}</p>
       <button onClick="modifyBuyPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
       class="bi bi-pencil-square" viewBox="0 0 16 16">
       <path
@@ -170,7 +170,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
     </svg></button>
 
     
-    <p id="rentPrice-${idx}">prezzo noleggio: ${rentPrice}</p>
+    <p id="rentPrice-${idx}">prezzo noleggio: ${rentPrice/100}</p>
     <button onClick="modifyRentPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
     class="bi bi-pencil-square" viewBox="0 0 16 16">
     <path
@@ -293,9 +293,9 @@ function removeMovieFromPalinsesto(id) {
 function modifyBuyPrice(id) {
   console.log("modificando prezzo acquisto di:  " + id);
 
-  var newCognome = prompt("Nuovo prezzo di acquisto: ");
-  if (newCognome != null || newCognome == "" || newCognome == "") {
-    document.getElementById("buyPrice-" + id).innerHTML = "prezzo acquisto: " + newCognome
+  var newCognome = prompt("Nuovo prezzo di acquisto (intero in centesimi): ");
+  if (newCognome.match('^[0-9]*[1-9][0-9]*$')) {  //newCognome != null || newCognome == "" || newCognome == "" &&
+    document.getElementById("buyPrice-" + id).innerHTML = "prezzo acquisto: " + newCognome/100
 
     var utente = JSON.parse(localStorage.getItem("utente"));
     utente.palinsesto.forEach(element => {
@@ -313,14 +313,16 @@ function modifyBuyPrice(id) {
       }
     }
     localStorage.setItem('data', JSON.stringify(data));
+  }else{
+    alert("Prezzo non valido")
   }
 }
 
 function modifyRentPrice(id) {
   console.log("modificando prezzo noleggio di:  " + id);
-  var newCognome = prompt("Nuovo prezzo di noleggio: ");
-  if (newCognome != null || newCognome == "" || newCognome == "") {
-    document.getElementById("buyPrice-" + id).innerHTML = "prezzo noleggio: " + newCognome
+  var newCognome = prompt("Nuovo prezzo di noleggio (intero in centesimi): ");
+  if (newCognome.match('^[0-9]*[1-9][0-9]*$')) {
+    document.getElementById("rentPrice-" + id).innerHTML = "prezzo noleggio: " + newCognome/100
 
     var utente = JSON.parse(localStorage.getItem("utente"));
     utente.palinsesto.forEach(element => {

@@ -11,28 +11,28 @@ $('document').ready(function () {
         dataVendita =  new Date(element.date).getTime()
 
         if(dataVendita<mese){
-            guadagniMensili += parseFloat(element.price)
+            guadagniMensili += parseInt(element.price)
 
             if(element.type=="noleggio"){
-                guadagniMensiliNoleggio += parseFloat(element.price)
+                guadagniMensiliNoleggio += parseInt(element.price)
             }else{
-                guadagniMensiliAcquisto += parseFloat(element.price)
+                guadagniMensiliAcquisto += parseInt(element.price)
             }
         }
 
         if(dataVendita<settimana){
-            guadagniSettimanali += parseFloat(element.price)
+            guadagniSettimanali += parseInt(element.price)
         }
     });
 
-    console.log("Guadagni settimanali: " + guadagniSettimanali);
-    console.log("Guadagni mensili: " + guadagniMensili);
-    console.log("Guadagni mensili acquisto: " + guadagniMensiliAcquisto);
-    console.log("Guadagni mensili noleggio: " + guadagniMensiliNoleggio);
+    console.log("Guadagni settimanali: " + guadagniSettimanali/100);
+    console.log("Guadagni mensili: " + guadagniMensili/100);
+    console.log("Guadagni mensili acquisto: " + guadagniMensiliAcquisto/100);
+    console.log("Guadagni mensili noleggio: " + guadagniMensiliNoleggio/100);
 
-    $('#incassiSettimanali').append(guadagniSettimanali)
-    $('#incassiMensili').append(guadagniMensili)
-    $('#incassiMensiliAcquisto').append(guadagniMensiliAcquisto)
-    $('#incassiMensiliNoleggio').append(guadagniMensiliNoleggio)
+    $('#incassiSettimanali').append(guadagniSettimanali/100)
+    $('#incassiMensili').append(guadagniMensili/100)
+    $('#incassiMensiliAcquisto').append(guadagniMensiliAcquisto/100)
+    $('#incassiMensiliNoleggio').append(guadagniMensiliNoleggio/100)
     
 })

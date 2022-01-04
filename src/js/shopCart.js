@@ -54,9 +54,9 @@ function displayMovieInCart(idx, type, title) {
   </svg></button></td>
     <td>${idx}</td>
     <td>${title}</td>
-    <td><input id="prezzoAcquisto" type="number" min="1"></td>
-    <td><input id="prezzoNoleggio" type="number" min="1"></td>
-    <td>1000€</td>
+    <td><input id="prezzoAcquisto-${idx}" type="number" onkeypress="return event.charCode >= 48" min="1"></td>
+    <td><input id="prezzoNoleggio-${idx}" type="number" onkeypress="return event.charCode >= 48" min="1"></td>
+    <td>10€</td>
     </tr>
   `;
 
@@ -127,8 +127,8 @@ function purchaese() {
             "id": element.id,
             "type": element.type,
             "date": now,
-            "price": $("#prezzoAcquisto").val(),
-            "priceRent": $("#prezzoNoleggio").val(),
+            "price": $("#prezzoAcquisto-"+element.id).val(),
+            "priceRent": $("#prezzoNoleggio-"+element.id).val(),
             "shop": libreria.shopName
         }
 

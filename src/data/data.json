@@ -14,12 +14,12 @@
      "fimlComprati": [{
          "id": "550",
          "date": "2021-12-21 19:29:57",
-         "price": "9,99",
+         "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "551",
          "date": "2021-12-21 19:29:57",
-         "price": "10,99",
+         "price": "1099",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "553",
@@ -30,7 +30,7 @@
      "filmNoleggiati": [{
          "id": "560",
          "date": "2021-12-21 19:29:57",
-         "price": "9,99",
+         "price": "999",
          "shop": "BlockBuster Piacenza"
      }]
  }, {
@@ -43,38 +43,38 @@
      "password": "1234",
      "palinsesto": [{
          "id": "550",
-         "price": "9,99",
-         "priceRent": "5,99",
+         "price": "999",
+         "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "551",
-         "price": "9,99",
-         "priceRent": "5,99",
+         "price": "999",
+         "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "552",
-         "price": "9,99",
-         "priceRent": "5,99",
+         "price": "999",
+         "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "553",
-         "priceRent": "5,99",
-         "price": "9,99",
+         "priceRent": "599",
+         "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "554",
-         "priceRent": "5,99",
-         "price": "9,99",
+         "priceRent": "599",
+         "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
          "id": "556",
-         "price": "9,99",
-         "priceRent": "5,99",
+         "price": "999",
+         "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }],
      "vendite": [{
          "id": "550",
-         "price": "9,99",
+         "price": "999",
          "type": "buy",
          "date": "2022-01-02 19:29:57"
      }],
@@ -95,8 +95,8 @@
      "password": "1234",
      "palinsesto": [{
          "id": "557",
-         "price": "9,99",
-         "priceRent": "5,99",
+         "price": "999",
+         "priceRent": "599",
          "shop": "BlockBuster Milano"
      }],
      "vendite": [{
@@ -107,7 +107,7 @@
      },
      {
         "id": "557",
-        "price": "9,99",
+        "price": "999",
         "type": "noleggio",
         "date": "2022-01-02 19:29:57"
     }
