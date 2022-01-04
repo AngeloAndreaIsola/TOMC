@@ -7,23 +7,26 @@ $('document').ready(function () {
     var guadagniMensili =0, guadagniSettimanali =0, guadagniMensiliAcquisto =0, guadagniMensiliNoleggio =0
     console.log(utente.vendite);
 
-    utente.vendite.forEach(element => {
-        dataVendita =  new Date(element.date).getTime()
-
-        if(dataVendita<mese){
-            guadagniMensili += parseInt(element.price)
-
-            if(element.type=="noleggio"){
-                guadagniMensiliNoleggio += parseInt(element.price)
-            }else{
-                guadagniMensiliAcquisto += parseInt(element.price)
+    if( JSON.parse(localStorage.getItem("utente")) != null || JSON.parse(localStorage.getItem("utente")) != undefined){
+        utente.vendite.forEach(element => {
+            dataVendita =  new Date(element.date).getTime()
+    
+            if(dataVendita<mese){
+                guadagniMensili += parseInt(element.price)
+    
+                if(element.type=="noleggio"){
+                    guadagniMensiliNoleggio += parseInt(element.price)
+                }else{
+                    guadagniMensiliAcquisto += parseInt(element.price)
+                }
             }
-        }
+    
+            if(dataVendita<settimana){
+                guadagniSettimanali += parseInt(element.price)
+            }
+        });
+    }
 
-        if(dataVendita<settimana){
-            guadagniSettimanali += parseInt(element.price)
-        }
-    });
 
     console.log("Guadagni settimanali: " + guadagniSettimanali/100);
     console.log("Guadagni mensili: " + guadagniMensili/100);

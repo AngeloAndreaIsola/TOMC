@@ -19,6 +19,18 @@ function registerUser() {
         fimlComprati: []
     }
 
+    var newShop = {
+        type: "",
+        email: "",
+        lastname: "",
+        name: "",
+        password: "",
+        palinsesto: [],
+        vendite: [],
+        partitaIVA: "",
+        shopName:""
+    }
+
     //Controllo su input
     for (var i = 0; i < data.length; i++) {
         // check if new username is equal to any already created usernames
@@ -34,7 +46,7 @@ function registerUser() {
             // stop the statement if result is found true
             break
         } else {
-            if (type == 'utente') {
+            if (type == 'utente' && registerEmail != data[i].email) {
                 newUser.email = registerEmail
                 newUser.name = registerNome
                 newUser.lastname = registerCognome
@@ -46,15 +58,15 @@ function registerUser() {
                 localStorage.setItem('utente', JSON.stringify(newUser));
                 window.location.replace("./user_home.html");
             } else {
-                newUser.email = registerEmail
-                newUser.name = registerNome
-                newUser.lastname = registerCognome
-                newUser.password = registerPassword
-                newUser.type = type
+                newShop.email = registerEmail
+                newShop.name = registerNome
+                newShop.lastname = registerCognome
+                newShop.password = registerPassword
+                newShop.type = type
 
-                data.push(newUser)
+                data.push(newShop)
                 localStorage.setItem('data', JSON.stringify(data));
-                localStorage.setItem('utente', JSON.stringify(newUser));
+                localStorage.setItem('utente', JSON.stringify(newShop));
                 window.location.replace("./home_shop.html");
             }
         }
@@ -70,7 +82,7 @@ function togleRegisterNegozio() {
 
 
     if (type == 'utente') {
-        type = "negoziante"
+        type = "shop"
         registerNegoziate.style.display = "inline"
         registerSelectType.firstChild.data = "Sei un utente standard?"
     } else {
