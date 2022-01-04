@@ -16,7 +16,8 @@ function registerUser() {
         password: "",
         type: "",
         filmNoleggiati: [],
-        fimlComprati: []
+        fimlComprati: [],
+        history: []
     }
 
     var newShop = {

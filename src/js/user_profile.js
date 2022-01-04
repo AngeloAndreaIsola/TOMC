@@ -1,6 +1,8 @@
 data = JSON.parse(localStorage["utente"])
 var movieArray
 const container = document.getElementById("cronologiaAcquisti");
+const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
+const BASE_URL = 'https://api.themoviedb.org/3/movie/'
 
 $('document').ready(function () {
     console.log("Document ready!");
@@ -26,12 +28,18 @@ $('document').ready(function () {
     console.log(movieArrayC);
 
     //unisce array, il risultato è nel primo
-    Array.prototype.push.apply(movieArrayN,movieArrayC);
-    movieArray = movieArrayN
-    console.log("movie array:");
+    // Array.prototype.push.apply(movieArrayN, movieArrayC);
+    // movieArray = movieArrayN
+    // console.log("movie array:");
+    // console.log(movieArray);
+
+
+    movieArray = data.history
     console.log(movieArray);
     movieArray.forEach(element => {
-        displayMovieInCart(element.id, "xxx",element, element.title)
+        getMovie(element.id, response => {
+            displayMovieInCart(element.id, element.type, element, response.title)
+        })
     });
 
 
@@ -46,7 +54,7 @@ function modificaNome() {
         data.name = newNome
         localStorage.setItem('utente', JSON.stringify(data));
 
-    }  
+    }
 }
 
 //TODO: Non far modificare campo quando è nullo o withespace
@@ -59,7 +67,7 @@ function modificaCognome() {
         data.lastname = newCognome
         localStorage.setItem('utente', JSON.stringify(data));
 
-    }  
+    }
 }
 
 function displayMovieInCart(idx, type, element, title) {
@@ -69,31 +77,43 @@ function displayMovieInCart(idx, type, element, title) {
       <tr>
       <td scope="row">
       <td>${idx}</td>
-      <td>titolo</td>
-      <td>type</td>
-      <td>data</td>
+      <td>${title}</td>
+      <td>${type}</td>
+      <td>${element.date}</td>
       <td>${element.shop}</td>
-      <td>${element.price + "€"}</td>
+      <td>${element.price/100 + "€"}</td>
       </tr>
     `;
-  
+
     // Append newyly created card element to the container
     container.innerHTML += content;
-  }
+}
 
-  function deleteProfile(){
+function deleteProfile() {
     var data = JSON.parse(localStorage["data"])
     var utente = JSON.parse(localStorage["utente"])
     var newData = []
 
-    for(var i=0; i<data.length; i++){
-        if(data[i].email != utente.email){
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].email != utente.email) {
             newData.push(data[i])
         }
     }
-    
+
     localStorage.setItem('data', JSON.stringify(newData));
     localStorage.removeItem("utente");
     console.log("Profilo cancellato");
     window.location.replace("./login.html");
+}
+
+function getMovie(code, callback) {
+    $.ajax({
+        type: "GET",
+        url: BASE_URL + code + API_KEY,
+        data: JSON.stringify({}),
+        success: callback,
+        error: function (error) {
+            console.log(error.responseText);
+        }
+    })
 }

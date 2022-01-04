@@ -129,7 +129,7 @@ function displayShops(idx, element) {
   //se è gia nel carrello disabilità tutti pulsanti
    utente = JSON.parse(localStorage["utente"])
   var carrello
-  if (JSON.parse(localStorage["cart"]) != null || localStorage["cart"] != undefined) {
+  if (localStorage["cart"] != null || localStorage["cart"] != undefined) {
     carrello = JSON.parse(localStorage["cart"])
     console.log(carrello);
     carrello.forEach(element => {

@@ -36,17 +36,9 @@ $('document').ready(function () {
     $("#carrelloVuoto").show()
   } else {
     storedMovies.forEach(element => {
-      //find movie in json
-      var currentMovie
-      movieArray.forEach(e => {
-        if (e.movie.id == element.id) {
-          currentMovie = e
-        }
-      })
-
       //display movie in cart
       getMovie(element.id, response => {
-        displayMovieInCart(element.id, element.type, currentMovie, response.title  )
+        displayMovieInCart(element.id, element.type,element, response.title)
       })
     })
   }
@@ -82,7 +74,7 @@ function displayMovieInCart(idx, type, element, title) {
     <td>${title}</td>
     <td>${type}</td>
     <td>${element.shop}</td>
-    <td>${element.movie.price/100 + "€"}</td>
+    <td>${element.price/100 + "€"}</td>
     </tr>
   `;
 
@@ -125,12 +117,11 @@ function purchaese() {
     var now = date + ' ' + time;
 
 
-    var price = 20
     o = {
       "id": element.id,
       "type": element.type,
       "date": now,
-      "price": price
+      "price": element.price
     }
     
     if(element.type == "acquisto"){
@@ -139,6 +130,9 @@ function purchaese() {
       libreria.filmNoleggiati.push(o)
     }
 
+    o.shop = element.shop
+    libreria.history.push(o)
+    console.log("Aggiungo acquisto a cronologia");
     addToStat(o, element.shop)
   })
 

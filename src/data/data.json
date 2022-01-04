@@ -32,7 +32,8 @@
          "date": "2021-12-21 19:29:57",
          "price": "999",
          "shop": "BlockBuster Piacenza"
-     }]
+     }],
+     "history": []
  }, {
      "type": "shop",
      "name": "Andrea",
