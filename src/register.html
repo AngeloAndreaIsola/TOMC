@@ -2,199 +2,208 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<add name="Access-Control-Allow-Origin" value="*" / <meta name="viewport"
-		content="width=device-width, initial-scale=1.0">
-		<title>TOMC | Registrazione </title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.6.0.js"
-			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-		</script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-		</script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-		<link rel="stylesheet" href="css/style.css">
-</head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
 </head>
 
 <body>
 
-	<form action="submit" class="needs-validation">
-		<h1>Registrazione</h1>
+  <div class="container">
+    <h1>Registrazione</h1>
+    <form class="needs-validation" novalidate="" onsubmit="return registerUser()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Nome</label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
+          <div class="invalid-feedback">
+            inserisci un nome valido.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Cognome</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+          <div class="invalid-feedback">
+           Inserisci un congome valido.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+        <div class="invalid-feedback">
+          Inserisci una email valida.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="username">Password</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+          </div>
+          <input type="password" class="form-control" id="password" placeholder="Password"
+            required="" minlength="3">
+          <div class="invalid-feedback" style="width: 100%;">
+            La password è richiesta.e deve essere piu lunga di 3 caratteri
+          </div>
+        </div>
+      </div>
+
+      <div id="registerSelectType">
+        Voui aprire il tuo negozio online?
+        <button type="button" class="btn btn-primary" onclick="togleRegisterNegozio()">Clicca
+          qui</button>
+      </div>
+
+      <div style="display: none;" id="registerNegoziante">
+        <div class="mb-3">
+          <label for="shop">Nome negozio</label>
+          <input type="text" class="form-control" id="shop" placeholder="Blockbuster Roma">
+          <div class="invalid-feedback">
+            Inserisci il nome del nogozio.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Indirizzo</label>
+          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+          <div class="invalid-feedback">
+            Inserisci l'indirizzo del tuo negozio.
+          </div>
+        </div>
 
 
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="prov">Provincia</label>
+            <select class="custom-select d-block w-100" id="prov">
+              <option value="">Scegli...</option>
+              <option>Piacenza</option>
+              <option>Milano</option>
+              <option>Roma</option>
+            </select>
+            <div class="invalid-feedback">
+              Selezionare una provincia valida.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            <input type="text" class="form-control" id="zip" placeholder="">
+            <div class="invalid-feedback">
+              Zip code richiesto.
+            </div>
+          </div>
+        </div>
 
-	</form>
+        <div class="mb-3">
+          <label for="PIVA">Partita IVA</label>
+          <input type="text" class="form-control" id="PIVA" placeholder="1111111111111111111111">
+          <div class="invalid-feedback">
+            Partita IVA richiesta
+          </div>
+        </div>
 
-	<!-- CARTA DI CREDITO -->
-	<div class="col-md-8 order-md-1">
-		<h4 class="mb-3">Registrazione</h4>
-		<form class="needs-validation was-validated" novalidate="" _lpchecked="1">
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="firstName">First name</label>
-					<input type="text" class="form-control" id="nomeRegister" placeholder="" value="" required=""
-						style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-					<div class="invalid-feedback">
-						Valid first name is required.
-					</div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="lastName">Last name</label>
-					<input type="text" class="form-control" id="cognomeRegister" placeholder="" value="" required="">
-					<div class="invalid-feedback">
-						Valid last name is required.
-					</div>
-				</div>
-			</div>
+        <div class="mb-3">
+          <label for="number">Numero</label>
+          <input type="text" class="form-control" id="number" placeholder="2272777853">
+          <div class="invalid-feedback">
+            Numero di telefono richiesto
+          </div>
+        </div>
+      </div>
+      
+      <hr class="mb-4">
 
-			<div class="mb-3">
-				<label for="username">Password</label>
-				<div class="input-group">
-					<div class="input-group-prepend">
-					</div>
-					<input type="password" class="form-control" id="passwordRegister" placeholder="Password" required=""
-						minlength="3">
-					<div class="invalid-feedback" style="width: 100%;">
-						Your password is required. And must be longer than 3 carathers
-					</div>
-				</div>
-			</div>
-
-
-			<div class="mb-3">
-				<label for="email">Email</label>
-				<input type="email" class="form-control" id="emailRegister" placeholder="you@example.com" required="">
-				<div class="invalid-feedback">
-					Please enter a valid email address for shipping updates.
-				</div>
-			</div>
-
-
-			<div id="registerSelectType">
-				Voui aprire il tuo negozio online?
-				<button type="button" class="btn btn-primary" onclick="togleRegisterNegozio()">Clicca
-					qui</button>
-			</div>
-
-			<div style="display: none;" id="registerNegoziante">
-				<div class="mb-3">
-					<label for="shop">Shop name</label>
-					<input type="text" class="form-control" id="shop" placeholder="Blockbuster Roma" required="">
-					<div class="invalid-feedback">
-						Please enter your shop name.
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="address">Address</label>
-					<input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-					<div class="invalid-feedback">
-						Please enter your shipping address.
-					</div>
-				</div>
-
-
-				<div class="row">
-					<div class="col-md-5 mb-3">
-						<label for="country">Country</label>
-						<select class="custom-select d-block w-100" id="country" required="">
-							<option value="">Choose...</option>
-							<option>Piacenza</option>
-							<option>Milano</option>
-							<option>Roma</option>
-						</select>
-						<div class="invalid-feedback">
-							Please select a valid country.
-						</div>
-					</div>
-					<div class="col-md-3 mb-3">
-						<label for="zip">Zip</label>
-						<input type="text" class="form-control" id="zip" placeholder="" required="">
-						<div class="invalid-feedback">
-							Zip code required.
-						</div>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="PIVA">Partita IVA</label>
-					<input type="text" class="form-control" id="PIVA" placeholder="1111111111111111111111" required="">
-					<div class="invalid-feedback">
-						Please enter your PIVA.
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="number">Phone number</label>
-					<input type="text" class="form-control" id="number" placeholder="2272777853" required="">
-					<div class="invalid-feedback">
-						Please enter your phone number.
-					</div>
-				</div>
-			</div>
-
-			<hr class="mb-4">
-
-			<h4 class="mb-3">Payment</h4>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="cc-name">Name on card</label>
-					<input type="text" class="form-control" id="cc-name" placeholder="" required="">
-					<small class="text-muted">Full name as displayed on card</small>
-					<div class="invalid-feedback">
-						Name on card is required
-					</div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="cc-number">Credit card number</label>
-					<input type="text" class="form-control" id="cc-number" placeholder="" required="">
-					<div class="invalid-feedback">
-						Credit card number is required
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 mb-3">
-					<label for="cc-expiration">Expiration</label>
-					<input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-					<div class="invalid-feedback">
-						Expiration date required
-					</div>
-				</div>
-				<div class="col-md-3 mb-3">
-					<label for="cc-expiration">CVV</label>
-					<input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-					<div class="invalid-feedback">
-						Security code required
-					</div>
-				</div>
-			</div>
-			<hr class="mb-4">
-			<button type="button" class="btn btn-primary" onclick="registerUser()">Registrati</button><br>
-			<!-- <button class="btn btn-primary btn-lg btn-block" onclick="registerUser()">Registrati</button> -->
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required="">
-				<label class="form-check-label" for="flexCheckDefault">
-					Accept privacy terms
-				</label>
-			</div>
-			<div>
-				Hai un account? <a href="login.html" class="text-dark">Accedi</a>
-			</div>
-		</form>
-	</div>
+      <h4 class="mb-3">Pagamento</h4>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-name">Nome intestatario</label>
+          <input type="text" class="form-control"  id="cc-name" placeholder="" required="">
+          <small class="text-muted">Full name as displayed on card</small>
+          <div class="invalid-feedback">
+            Nome sulla carta è richiesto
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cc-number">Numero carta di credito</label>
+          <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+          <div class="invalid-feedback">
+            Numero di carta è richiesto
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 mb-1">
+          <label for="cc-expiration">Scad. M</label>
+          <input type="text" class="form-control" id="cc-expiration-M" placeholder="" required="">
+          <div class="invalid-feedback">
+            Anno di scadenza è richiesto
+          </div>
+        </div>
+        <div class="col-md-2 mb-1">
+          <label for="cc-expiration">Scad. A</label>
+          <input type="text" class="form-control" id="cc-expiration-Y" placeholder="" required="">
+          <div class="invalid-feedback">
+            Mese di scadenza è richiesto
+          </div>
+        </div>
 
 
-	<script src="js/register.js"></script>
+        <div class="col-md-2 mb-1">
+          <label for="cc-expiration">CVV</label>
+          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+          <div class="invalid-feedback">
+            CVV è richiesto
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+    </form>
+  </div>
+
+
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+  <script src="js/register.js"></script>
+
 </body>
 
 </html>
