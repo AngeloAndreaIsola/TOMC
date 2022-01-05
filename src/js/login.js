@@ -1,6 +1,8 @@
 var jsonData
 
 window.onload = function () {
+	$('#errorCredentials').hide()
+
 	if (localStorage.getItem('data') != null) {
 		jsonData = JSON.parse(localStorage["data"])
 		console.log("Utenti registrati:");
@@ -11,32 +13,33 @@ window.onload = function () {
 	}
 };
 
+function _form_error_aria(validator) {
+	console.log(validator.target.elements[0]);
+}
+
 function auth() {
+
 	var email = document.getElementById("emailLogin").value;
 	var password = document.getElementById("passwordLogin").value;
 
 	//var jsonData = JSON.parse(data);
 	for (var i = 0; i < jsonData.length; i++) {
-		console.log(jsonData[i].email);
-		console.log(jsonData[i].password);
-
 		if (email == jsonData[i].email && password == jsonData[i].password) {
 			console.log("Credenziali corrette");
 			localStorage.setItem('utente', JSON.stringify(jsonData[i]));
 
 			if (jsonData[i].type == 'utente') {
 				window.location.replace("./user_home.html");
-				return;
+				return
 			} else if (jsonData[i].type == 'shop') {
 				window.location.replace("./home_shop.html");
-				return;
+				return
 			}
 
-
-		} else {
-			console.log("Credenziali non corrette");
 		}
 	}
+	console.log("credenziali errate");
+	alert("Credenziali errate")
 }
 
 function getJson() {
