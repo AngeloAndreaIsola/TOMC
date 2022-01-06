@@ -9,14 +9,15 @@ const container = document.getElementById("palinsesto");
 const risultatoRicerca = document.getElementById("risultati_ricerca");
 const form = document.getElementById('addMovieForm');
 const search = document.getElementById('search');
-var data;
+var data
+var palinsesto
 
 $('document').ready(function () {
   console.log("Document ready!");
   console.log("Local storage: " + JSON.parse(localStorage["utente"]));
   data = JSON.parse(localStorage["utente"])
   console.log("Data: " + data);
-  var palinsesto = data.palinsesto
+  palinsesto = data.palinsesto
   console.log(palinsesto);
 
   //mostra palinsesto
@@ -142,7 +143,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   const content = `
   <div class="card" id="card-${idx}">
   <div class="crop">
-  <img id="moviePoster" src="${BASE_URL_IMG + result.poster_path}" style="width=200px"></img>
+  <img id="moviePoster" src="${BASE_URL_IMG + result.poster_path}"  style="width=200px"></img>
   </div>
   <div class="card-header" id="heading-${idx}">
     <h5 class="mb-0">
@@ -156,9 +157,6 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
     <div class="card-body">
 
       <h5>${result.title}</h5>
-      <p id ="genres-${idx}"></p>
-      <p>${result.vote_average}</p>
-      <p>${result.release_date}</p>
       <p id="demo-${idx}"></p>
       <p id="buyPrice-${idx}">prezzo acquisto: ${buyPrice/100}</p>
       <button class="btn btn-primary" onClick="modifyBuyPrice(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -179,11 +177,11 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
       d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
   </svg></button>
 
-  <p>riuomvi da palisesto</p>
+
   <button class="btn btn-danger" id="remove-${idx}" onclick="removeMovieFromPalinsesto(${idx})">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-</svg></button>
+</svg>Rimuovi</button>
 
     </div>
   </div>
@@ -191,14 +189,9 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
 `;
 
   // Append newyly created card element to the container
-  container.innerHTML += content;
+  container.innerHTML += content; 
 
-  //aapende generi alle card
-  result.genres.forEach(function (entry) {
-    //console.log(entry);
-    //console.log(entry.name);
-    $("#genresN-" + idx).append(entry.name + ' ');
-  })
+
 }
 
 function displaySearchResult(result, idx, container) {
@@ -229,7 +222,7 @@ function displaySearchResult(result, idx, container) {
       <p id="demo-${idx}"></p>
       <p>Prezzo: 10€</p>
 
-      <button class="btn btn-danger" id="shopAddMovieToCart-${idx}" onclick="addMovieToCart(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+      <button class="btn btn-success" id="shopAddMovieToCart-${idx}" onclick="addMovieToCart(${idx})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
     </svg></button>
@@ -240,6 +233,11 @@ function displaySearchResult(result, idx, container) {
 
   // Append newyly created card element to the container
   container.innerHTML += content;
+  palinsesto.forEach(element => {
+    if(element.id == idx){
+      $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+    }
+  })
 }
 
 function addMovieToCart(id) {
