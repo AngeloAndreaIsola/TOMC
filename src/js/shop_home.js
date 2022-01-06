@@ -1,6 +1,6 @@
 const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
-const BASE_URL_IMG = 'https://image.tmdb.org/t/p/w500/'
+const BASE_URL_IMG = 'https://image.tmdb.org/t/p/original/'
 const BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/multi'
 const API_URL = BASE_URL + "550" + API_KEY
 const searchURL = BASE_URL + '/search/movie' + API_KEY;
@@ -22,9 +22,9 @@ $('document').ready(function () {
   //mostra palinsesto
   palinsesto.forEach(element => {
     getMovie(element.id, (response) => {
-      //console.log(response);
+      console.log(response);
       displayPalinsesto(response, response.id, container, element.date, element.priceRent, element.price)
-      getMoviePoster(response.backdrop_path, (responseBis) => {
+      getMoviePoster(response.poster_path, (responseBis) => {
         $('#moviePoster').append(responseBis)
         //console.log(responseBis);
       })
@@ -142,7 +142,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   const content = `
   <div class="card" id="card-${idx}">
   <div class="crop">
-  <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
+  <img id="moviePoster" src="${BASE_URL_IMG + result.poster_path}" style="width=200px"></img>
   </div>
   <div class="card-header" id="heading-${idx}">
     <h5 class="mb-0">
@@ -209,7 +209,7 @@ function displaySearchResult(result, idx, container) {
   const content = `
   <div class="card">
   <div class="crop">
-  <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
+  <img id="moviePoster" src="${BASE_URL_IMG + result.poster_path}" style="width=200px"></img>
   </div>
   <div class="card-header" id="heading-${idx}">
     <h5 class="mb-0">
