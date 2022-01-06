@@ -66,15 +66,16 @@ function displayMovieInCart(idx, type, title) {
 
 function removeMovieFromCart(idx) {
     //aggiorna la lista di film nel carrello
-    var storedMovies = JSON.parse(localStorage.getItem("cart"));
+    var storedMovies = JSON.parse(localStorage.getItem("shopCart"));
     var tempMovies = [];
     storedMovies.forEach(element => {
         if (element.id != idx) {
             tempMovies.push(element)
         }
     })
-    localStorage.setItem("cart", JSON.stringify(tempMovies));
-    console.log("FIlm nel carrello: " + JSON.parse(localStorage.getItem("cart")));
+    localStorage.setItem("shopCart", JSON.stringify(tempMovies));
+    console.log("FIlm nel carrello:");
+    console.log(JSON.parse(localStorage.getItem("shopCart")));
     storedMovies = tempMovies
 
     //pulisce html da tutti gli elementi vecchi
@@ -94,8 +95,9 @@ function removeMovieFromCart(idx) {
         if (element.id != idx) {
             tempMovies.push(element)
         }
+        console.log(tempMovies);
     })
-    localStorage.setItem("cart", JSON.stringify(tempMovies));
+    localStorage.setItem("shopCart", JSON.stringify(tempMovies));
     console.log("FIlm nel carrello: " + JSON.parse(localStorage.getItem("shopCart")));
     storedMovies = tempMovies
 
