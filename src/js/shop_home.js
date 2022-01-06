@@ -238,6 +238,23 @@ function displaySearchResult(result, idx, container) {
       $("#shopAddMovieToCart-"+idx).prop("disabled",true);
     }
   })
+
+  //se è gia acquistato non lo fa aggingeere
+  palinsesto.forEach(element => {
+    if(element.id == idx){
+      $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+    }
+  })
+
+  //se è gia nel carello non lo fa aggiungere
+  if (JSON.parse(localStorage.getItem("shopCart")) != null) { //copia i film
+    carello = JSON.parse(localStorage.getItem("shopCart"))
+    carello.forEach(element => {
+      if(element.id == idx){
+        $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+      }
+    })
+  }
 }
 
 function addMovieToCart(id) {
@@ -258,6 +275,8 @@ function addMovieToCart(id) {
   }
   console.log("FIlm nel carrello: ")
   console.log(JSON.parse(localStorage.getItem("shopCart")));
+
+  $("#shopAddMovieToCart-"+id).prop("disabled",true);
 }
 
 function removeMovieFromPalinsesto(id) {
