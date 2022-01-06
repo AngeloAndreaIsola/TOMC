@@ -21,7 +21,7 @@ $('document').ready(function () {
     movieArrayN.forEach(element => {
         getMovie(element.id, (response) => {
             displayMovieN(response, response.id, containerN, element.date)
-            getMoviePoster(response.backdrop_path, (responseBis) => {
+            getMoviePoster(response.poster_path, (responseBis) => {
                 $('#moviePoster').append(responseBis)
                 //console.log(responseBis);
             })
@@ -77,9 +77,10 @@ function displayMovieN(result, idx, container, date) {
 
     // Construct card content
     const content = `
+    <!--
   <div class="card">
   <div class="crop">
-  <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
+  <img id="moviePoster" ></img>
   </div>
   <div class="card-header" id="heading-${idx}">
     <h5 class="mb-0">
@@ -97,12 +98,29 @@ function displayMovieN(result, idx, container, date) {
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
       <p id="demo-${idx}"></p>
-      <button id="playRent-${idx}"><a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+      <button class="btn btn-primary"id="playRent-${idx}"><a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
       <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
     </svg></button>
     </div>
   </div>
+</div>
+-->
+
+</div>
+<div class="card movie_card">
+<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="card-title">${result.title}</h5>
+   <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
+   <span class="movie_info float-right"><i class="fas fa-star"></i> ${result.vote_average}</span>
+   <p id ="libGenresN-${idx}"></p>
+   <p id="demo-${idx}"></p>
+   <button id="playRent-${idx}" class="btn btn-outline-primary"> <a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+   <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+ </svg></button>
+   </div>
 </div>
 `;
 
@@ -121,9 +139,10 @@ function displayMovieC(result, idx, container) {
 
     // Construct card content
     const content = `
+    <!--
   <div class="card">
   <div class="crop">
-  <img id="moviePoster" src="${BASE_URL_IMG + result.backdrop_path}" style="width=200px"></img>
+  <img id="moviePoster"></img>
   </div>
   <div class="card-header" id="heading-${idx}">
     <h5 class="mb-0">
@@ -140,12 +159,28 @@ function displayMovieC(result, idx, container) {
       <p id="libGenresC-${idx}"></p>
       <p>${result.vote_average}</p>
       <p>${result.release_date}</p>
-      <button onLCick="play(${idx})"> <a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+      <button> <a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
       <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
     </svg></button>
     </div>
   </div>
+</div>
+-->
+
+</div>
+<div class="card movie_card">
+<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="card-title">${result.title}</h5>
+   <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
+   <span class="movie_info float-right"><i class="fas fa-star"></i> ${result.vote_average}</span>
+   <p id ="libGenresC-${idx}"></p>
+   <p id="demo-${idx}"></p>
+   <button class="btn btn-outline-primary"> <a href="data/logoIntro.mp4?id=${idx}"" target="_self"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+   <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+ </svg></button></div>
 </div>
 `;
 
@@ -185,6 +220,7 @@ function displayTimer(date, idx) {
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("demo-" + idx).innerHTML = "SCADUTO";
+                $("demo-"+idx).addClass("badge badge-danger")
                 $("#playRent-"+idx).hide()
             }
         }

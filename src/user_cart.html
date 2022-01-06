@@ -83,24 +83,26 @@
 
 
   <div id="carrelloVuoto" style="display: none;">Il carrello è vuoto</div>
-  
-  <!-- Sezione lista film -->
-  <table id="tabellaCarrello" class="table table-borderless">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">#</th>
-        <th scope="col">Film</th>
-        <th scope="col">Tipologia di acquisto</th>
-        <th scope="col">Negozio</th>
-        <th scope="col">Prezzo</th>
-      </tr>
-    </thead>
-    <tbody id="tabellaCarrello-body">
-    </tbody>
-  </table>
 
-  <button onclick="purchaese()">Procedi all'acquisto</button>
+  <!-- Sezione lista film -->
+  <form onsubmit="purchaese()">
+    <table id="tabellaCarrello" class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">#</th>
+          <th scope="col">Film</th>
+          <th scope="col">Tipologia di acquisto</th>
+          <th scope="col">Negozio</th>
+          <th scope="col">Prezzo</th>
+        </tr>
+      </thead>
+      <tbody id="tabellaCarrello-body">
+      </tbody>
+    </table>
+
+    <button id="cartButton"class="btn btn-primary" type="submit">Procedi all'acquisto</button>
+  </form>
 
 
   <script src="js/user_cart.js"></script>

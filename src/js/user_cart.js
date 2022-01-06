@@ -31,10 +31,10 @@ $('document').ready(function () {
 
 
   var storedMovies = JSON.parse(localStorage.getItem("cart"));
-  if (storedMovies == null || storedMovies == undefined) {
-    $("#tabellaCarrello").hide()
-    $("#carrelloVuoto").show()
+  if (storedMovies == null || storedMovies == undefined){
+    $("#cartButton").prop("disabled",true);
   } else {
+    $("#cartButton").prop("disabled",false);
     storedMovies.forEach(element => {
       //display movie in cart
       getMovie(element.id, response => {
