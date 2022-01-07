@@ -3,6 +3,7 @@ var movieArray
 const container = document.getElementById("cronologiaAcquisti");
 const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 const BASE_URL = 'https://api.themoviedb.org/3/movie/'
+var alphaExp = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
 $('document').ready(function () {
     console.log("Document ready!");
@@ -46,26 +47,148 @@ $('document').ready(function () {
 })
 
 function modificaNome() {
-    var newNome = prompt("Please enter your name");
-    if (newNome != null || newNome == "" || newNome == "") {
+    var newNome = prompt("Nuovo nome: ");
+    if (newNome != null || newNome == "" && newNome.match('/^[A-Za-z]+$/')) {
         document.getElementById("profileName").innerHTML = newNome
 
+        //salva cambiamento per utente
         var data = JSON.parse(localStorage["utente"])
         data.name = newNome
         localStorage.setItem('utente', JSON.stringify(data));
 
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
     }
 }
 
 //TODO: Non far modificare campo quando è nullo o withespace
 function modificaCognome() {
-    var newCognome = prompt("Please enter your name");
-    if (newCognome != null || newCognome == "" || newCognome == "") {
+    var newCognome = prompt("Nuovo cognome: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
         document.getElementById("profileLastname").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
         data.lastname = newCognome
         localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+    }
+}
+
+function modificaNumeroCarta() {
+    var newCognome = prompt("Nuovo numero carta: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+        document.getElementById("numeroCarta").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.dettagliPAgamento.numeroCarta = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+
+    }
+}
+
+function modificaIntestatario() {
+    var newCognome = prompt("Nuovo nome intestatario: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+        document.getElementById("Intestatario").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.dettagliPAgamento.nomeCarta = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+
+    }
+}
+
+function modificaMese() {
+    var newCognome = prompt("Nuovo mese di scadenza: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+        document.getElementById("expM").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.dettagliPAgamento.expM = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+
+    }
+}
+
+function modificaAnno() {
+    var newCognome = prompt("Nuovo anno di scadenza: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+        document.getElementById("expY").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.dettagliPAgamento.expY = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+
+    }
+}
+
+function modificaCvv() {
+    var newCognome = prompt("Nuovo mese cvv: ");
+    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+        document.getElementById("cvv").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.dettagliPAgamento.cvv = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
 
     }
 }
