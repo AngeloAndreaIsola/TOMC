@@ -165,7 +165,7 @@ function displayMovie(result, idx, element) {
   const content = `
 </div>
 <div class="card movie_card" onclick="window.location.href='movie_info.html?id=${idx}'">
-<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="poster-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -214,19 +214,8 @@ function displayMovie(result, idx, element) {
     });
   }
 
-
-
-
-
-  /*
-        <div class="card" style="width: 18rem;">    //1
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-  */
+  if(result.poster_path==null || result.poster_path == undefined){
+    $("#poster-"+idx).attr("src","https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+  }
 
 }

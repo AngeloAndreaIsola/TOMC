@@ -70,7 +70,7 @@ function searchMovie(keyword, callback) {
   keyword = keyword.replace(/ /g, "+");
   $.ajax({
     type: "GET",
-    url: BASE_URL_SEARCH + API_KEY + "&query=" + keyword,
+    url: BASE_URL_SEARCH + API_KEY + "&query=" + keyword +"&language=it",
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
@@ -84,7 +84,7 @@ function searchActor(id, callback) {
 //http://api.themoviedb.org/3/person/62/movie_credits?api_key=###
   $.ajax({
     type: "GET",
-    url: searchActorURL+id+"/movie_credits"+API_KEY,
+    url: searchActorURL+id+"/movie_credits"+API_KEY+"&language=it",
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
@@ -143,7 +143,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   const content = `
 </div>
 <div class="card movie_card">
-<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="palinsesto-poster-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -183,6 +183,9 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   // Append newyly created card element to the container
   container.innerHTML += content; 
 
+  if(result.poster_path==null || result.poster_path == undefined){
+    $("#palinsesto-poster-"+idx).attr("src","https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+  }
 
 }
 
@@ -194,7 +197,7 @@ function displaySearchResult(result, idx, container) {
   const content = `
 </div>
 <div class="card movie_card">
-<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="poster-${idx}"src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -233,6 +236,10 @@ function displaySearchResult(result, idx, container) {
         $("#shopAddMovieToCart-"+idx).prop("disabled",true);
       }
     })
+  }
+
+  if(result.poster_path==null || result.poster_path == undefined){
+    $("#poster-"+idx).attr("src","https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
   }
 }
 

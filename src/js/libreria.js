@@ -44,7 +44,7 @@ $('document').ready(function () {
 function getMovie(code, callback) {
     $.ajax({
         type: "GET",
-        url: BASE_URL + code + API_KEY +"&language=it",
+        url: BASE_URL + code + API_KEY + "&language=it",
         data: JSON.stringify({}),
         success: callback,
         error: function (error) {
@@ -109,7 +109,7 @@ function displayMovieN(result, idx, container, date) {
 
 </div>
 <div class="card movie_card">
-<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="posterN-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -131,6 +131,10 @@ function displayMovieN(result, idx, container, date) {
     result.genres.forEach(function (entry) {
         $("#libGenresN-" + idx).append(entry.name + ' ');
     })
+
+    if (result.poster_path == null || result.poster_path == undefined) {
+        $("#posterN-" + idx).attr("src", "https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+    }
 }
 
 function displayMovieC(result, idx, container) {
@@ -170,7 +174,7 @@ function displayMovieC(result, idx, container) {
 
 </div>
 <div class="card movie_card">
-<img src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="posterC-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -190,6 +194,10 @@ function displayMovieC(result, idx, container) {
     result.genres.forEach(function (entry) {
         $("#libGenresC-" + idx).append(entry.name + ' ');
     })
+
+    if (result.poster_path == null || result.poster_path == undefined) {
+        $("#posterC-" + idx).attr("src", "https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+    }
 }
 
 function displayTimer(date, idx) {
@@ -220,8 +228,8 @@ function displayTimer(date, idx) {
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("demo-" + idx).innerHTML = "SCADUTO";
-                $("#demo-"+idx).addClass("badge badge-danger")
-                $("#playRent-"+idx).hide()
+                $("#demo-" + idx).addClass("badge badge-danger")
+                $("#playRent-" + idx).hide()
             }
         }
     }, 1000);
