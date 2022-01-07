@@ -29,6 +29,18 @@ function loadMovieFromShops() {
       }
     }
   })
+
+  //aggiunge i primi 600 film della lista
+    // for (var i = 0; i <= 600; i++) {
+    //   o = {
+    //     "movie": {
+    //       "id":i,
+    //       "price":99,
+    //       "shop":"videoteca ver"
+    //     }
+    //   }
+    //   movieArray.push(o)
+    // }
   console.log("Movie Array");
   console.log(movieArray);
 
@@ -158,6 +170,10 @@ function displayMovie(result, idx, element) {
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
    <span class="movie_info float-right"><i class="fas fa-star"></i> ${result.vote_average}</span>
+   <!--
+  <button>  <a href="movie_info.html?id=${idx}"" target="_self"><input type="button" value="Info"></a></button>
+  -->
+
 </div>
 </div>
 `;

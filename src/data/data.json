@@ -17,18 +17,18 @@
          "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "551",
+         "id": "189",
          "date": "2021-12-21 19:29:57",
          "price": "1099",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "553",
+         "id": "194",
          "date": "2021-12-21 19:29:57",
          "price": "999",
          "shop": "BlockBuster Piacenza"
      }],
      "filmNoleggiati": [{
-         "id": "560",
+         "id": "197",
          "date": "2021-12-21 19:29:57",
          "price": "999",
          "shop": "BlockBuster Piacenza"
@@ -43,32 +43,32 @@
      "email": "andrea.rossi@me.com",
      "password": "1234",
      "palinsesto": [{
-         "id": "550",
+         "id": "497",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "551",
+         "id": "12",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "552",
+         "id": "13",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "553",
+         "id": "11",
          "priceRent": "599",
          "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "554",
+         "id": "24",
          "priceRent": "599",
          "price": "999",
          "shop": "BlockBuster Piacenza"
      }, {
-         "id": "556",
+         "id": "28",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Piacenza"
@@ -95,11 +95,16 @@
      "email": "matteo.bianchi@me.com",
      "password": "1234",
      "palinsesto": [{
-         "id": "557",
+         "id": "77",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Milano"
-     }],
+     },{
+        "id": "103",
+        "price": "999",
+        "priceRent": "599",
+        "shop": "BlockBuster Milano"
+    }],
      "vendite": [{
          "id": "557",
          "price": "9,99",
