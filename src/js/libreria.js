@@ -220,7 +220,7 @@ function displayTimer(date, idx) {
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("demo-" + idx).innerHTML = "SCADUTO";
-                $("demo-"+idx).addClass("badge badge-danger")
+                $("#demo-"+idx).addClass("badge badge-danger")
                 $("#playRent-"+idx).hide()
             }
         }
