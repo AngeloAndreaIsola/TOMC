@@ -54,8 +54,8 @@ function displayMovieInCart(idx, type, title) {
   </svg></button></td>
     <td>${idx}</td>
     <td>${title}</td>
-    <td><input id="prezzoAcquisto-${idx}" type="number" onkeypress="return event.charCode >= 48" min="1" required></td>
-    <td><input id="prezzoNoleggio-${idx}" type="number" onkeypress="return event.charCode >= 48" min="1" required></td>
+    <td><input id="prezzoAcquisto-${idx}" class="prezzo" type="number" onkeypress="return event.charCode >= 48" min="1" required></td>
+    <td><input id="prezzoNoleggio-${idx}" class="prezzo" type="number" onkeypress="return event.charCode >= 48" min="1" required></td>
     <td>10€</td>
     </tr>
   `;
@@ -119,10 +119,16 @@ function purchaese() {
     console.log(JSON.parse(localStorage.getItem("shopCart")));
 
     //se non ha inserito i prezzi blocca
-    // if((".priceInput").val()==null){
-    //     alert("Non hai inserito il prezzo a tutti i film")
-    //     return
-    // }
+    var flag
+    $(".prezzo").each(function() {
+        if($(this).val()==null || $(this).val()=="" || $(this).val()==0){
+            flag=false
+        }
+    });
+    if(flag==false){
+        alert("Non hai inserito il prezzo a tutti i film")
+        return
+    }
 
     cart.forEach(element => {
         //aggiungi a lista di fiml comprati/noleggiati
