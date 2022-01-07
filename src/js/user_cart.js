@@ -29,7 +29,6 @@ $('document').ready(function () {
   console.log(movieArray)
 
 
-
   var storedMovies = JSON.parse(localStorage.getItem("cart"));
   if (storedMovies == null || storedMovies == undefined){
     $("#cartButton").prop("disabled",true);

@@ -13,9 +13,9 @@ $('document').ready(function () {
 
     var storedMovies = JSON.parse(localStorage.getItem("shopCart"));
     if (storedMovies == null) {
-        $("#tabellaCarrello").hide()
-        $("#carrelloVuoto").show()
+        $("#shopCartButton").prop("disabled",true);
     } else {
+        $("#shopCartButton").prop("disabled",false);
         storedMovies.forEach(element => {
             //display movie in cart
             getMovie(element.id, response => {
