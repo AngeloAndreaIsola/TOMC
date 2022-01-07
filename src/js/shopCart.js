@@ -32,7 +32,7 @@ $('document').ready(function () {
 function getMovie(code, callback) {
     $.ajax({
         type: "GET",
-        url: BASE_URL + code + API_KEY,
+        url: BASE_URL + code + API_KEY +"&language=it",
         data: JSON.stringify({}),
         success: callback,
         error: function (error) {
