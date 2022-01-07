@@ -33,12 +33,19 @@ $('document').ready(function () {
     })
 
     getActors(id, e => {
+      console.log(e);
       e.cast.forEach(element => {
         $("#actors").append(element.name)
         $("#actors").append(" ")
 
       });
 
+    e.crew.forEach(element => {
+      if(element.job =="Director"){
+        $("#director").append(element.name)
+        $("#director").append(" ")
+      }
+    })
     })
   })
 
