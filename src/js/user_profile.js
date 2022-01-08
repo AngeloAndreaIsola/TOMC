@@ -48,7 +48,7 @@ $('document').ready(function () {
 
 function modificaNome() {
     var newNome = prompt("Nuovo nome: ");
-    if (newNome != null || newNome == "" && newNome.match('/^[A-Za-z]+$/')) {
+    if (newNome.match('/^[A-Za-z]+$/')) {
         document.getElementById("profileName").innerHTML = newNome
 
         //salva cambiamento per utente
@@ -64,13 +64,15 @@ function modificaNome() {
             }
         }
         localStorage.setItem("data", JSON.stringify(d));
+    }else{
+        alert("Nome non valido")
     }
 }
 
 //TODO: Non far modificare campo quando è nullo o withespace
 function modificaCognome() {
     var newCognome = prompt("Nuovo cognome: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+    if (newCognome.match(alphaExp)) {
         document.getElementById("profileLastname").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -85,12 +87,14 @@ function modificaCognome() {
             }
         }
         localStorage.setItem("data", JSON.stringify(d));
+    }else{
+        alert("Cognome non valido")
     }
 }
 
 function modificaNumeroCarta() {
     var newCognome = prompt("Nuovo numero carta: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+    if (newCognome.match("^\s*-?[0-9]{16,16}\s*$")) {
         document.getElementById("numeroCarta").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -106,12 +110,14 @@ function modificaNumeroCarta() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
+    }else{
+        alert("Numero non valido")
     }
 }
 
 function modificaIntestatario() {
     var newCognome = prompt("Nuovo nome intestatario: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+    if (newCognome.match(alphaExp)) {
         document.getElementById("Intestatario").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -127,12 +133,14 @@ function modificaIntestatario() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
+    }else{
+        alert("Intestatario non valido")
     }
 }
 
 function modificaMese() {
     var newCognome = prompt("Nuovo mese di scadenza: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+    if (newCognome.match("^[1-9]$|^12$")) {
         document.getElementById("expM").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -148,13 +156,15 @@ function modificaMese() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
+    }else{
+        alert("Mese non valido")
     }
 }
 
 function modificaAnno() {
     var newCognome = prompt("Nuovo anno di scadenza: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
-        document.getElementById("expY").innerHTML = newCognome
+    if (newCognome.match("^[1-9]$|^2022$")) {
+        document.getElementById("expA").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
         data.dettagliPAgamento.expY = newCognome
@@ -169,12 +179,14 @@ function modificaAnno() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
+    }else{
+        alert("Anno non valido")
     }
 }
 
 function modificaCvv() {
-    var newCognome = prompt("Nuovo mese cvv: ");
-    if (newCognome != null || newCognome == "" && newCognome.match(alphaExp)) {
+    var newCognome = prompt("Nuovo cvv: ");
+    if (newCognome.match("^\s*-?[0-9]{3,5}\s*$")) {
         document.getElementById("cvv").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -190,6 +202,8 @@ function modificaCvv() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
+    }else{
+        alert("CVV non valido")
     }
 }
 
