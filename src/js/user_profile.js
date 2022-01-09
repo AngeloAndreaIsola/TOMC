@@ -48,7 +48,7 @@ $('document').ready(function () {
 
 function modificaNome() {
     var newNome = prompt("Nuovo nome: ");
-    if (newNome.match('/^[A-Za-z]+$/')) {
+    if (newNome.match(/^[a-z ,.'-]+$/i)) {
         document.getElementById("profileName").innerHTML = newNome
 
         //salva cambiamento per utente
@@ -72,7 +72,7 @@ function modificaNome() {
 //TODO: Non far modificare campo quando è nullo o withespace
 function modificaCognome() {
     var newCognome = prompt("Nuovo cognome: ");
-    if (newCognome.match(alphaExp)) {
+    if (newCognome.match(/^[a-z ,.'-]+$/i)) {
         document.getElementById("profileLastname").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -94,7 +94,7 @@ function modificaCognome() {
 
 function modificaNumeroCarta() {
     var newCognome = prompt("Nuovo numero carta: ");
-    if (newCognome.match("^\s*-?[0-9]{16,16}\s*$")) {
+    if (newCognome.match("^\s*-?[0-9]{16,17}\s*$")) {
         document.getElementById("numeroCarta").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -139,8 +139,8 @@ function modificaIntestatario() {
 }
 
 function modificaMese() {
-    var newCognome = prompt("Nuovo mese di scadenza: ");
-    if (newCognome.match("^[1-9]$|^12$")) {
+    var newCognome = prompt("Nuovo mese di scadenza (MM): ");
+    if (newCognome.match(/^(0[1-9]|1[012])$/)) {
         document.getElementById("expM").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -162,8 +162,8 @@ function modificaMese() {
 }
 
 function modificaAnno() {
-    var newCognome = prompt("Nuovo anno di scadenza: ");
-    if (newCognome.match("^[1-9]$|^2022$")) {
+    var newCognome = prompt("Nuovo anno di scadenza (YY): ");
+    if (parseInt(newCognome)>21) {
         document.getElementById("expA").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
