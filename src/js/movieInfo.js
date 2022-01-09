@@ -28,8 +28,8 @@ $('document').ready(function () {
     $("#score").append(response.vote_average)
     $("#synopsis").append(response.overview)
 
-    getMoviePoster(response.backdrop_path, res => {
-      $("#cover").attr('src', BASE_URL_IMG + response.backdrop_path)
+    getMoviePoster(response.poster_path, res => {
+      $("#cover").attr('src', BASE_URL_IMG + response.poster_path)
     })
 
     getActors(id, e => {
