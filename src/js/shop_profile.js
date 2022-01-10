@@ -12,6 +12,11 @@ $('document').ready(function () {
     document.getElementById("profileEmail").innerHTML = data.email;
     document.getElementById("profileShopName").innerHTML = data.shopName;
     document.getElementById("profilePIVA").innerHTML = data.partitiaIVA;
+    document.getElementById("cellulare").innerHTML = data.cellulare;
+    document.getElementById("indirizzo").innerHTML = data.indirizzo.via + ", " + data.indirizzo.zip + ", " + data.indirizzo.provincia
+    console.log(data.indirizzo.via);
+    console.log(data.indirizzo.provincia);
+    console.log(data.indirizzo.zip);
 
     document.getElementById("numeroCarta").innerHTML = data.dettagliPAgamento.numeroCarta;
     document.getElementById("Intestatario").innerHTML = data.dettagliPAgamento.nomeCarta;
@@ -39,7 +44,7 @@ function modificaNome() {
             }
         }
         localStorage.setItem("data", JSON.stringify(d));
-    }else{
+    } else {
         alert("Nome non valido")
     }
 }
@@ -62,7 +67,7 @@ function modificaCognome() {
             }
         }
         localStorage.setItem("data", JSON.stringify(d));
-    }else{
+    } else {
         alert("Cognome non valido")
     }
 }
@@ -85,7 +90,7 @@ function modificaNumeroCarta() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
-    }else{
+    } else {
         alert("Numero non valido")
     }
 }
@@ -108,7 +113,7 @@ function modificaIntestatario() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
-    }else{
+    } else {
         alert("Intestatario non valido")
     }
 }
@@ -131,14 +136,14 @@ function modificaMese() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
-    }else{
+    } else {
         alert("Mese non valido")
     }
 }
 
 function modificaAnno() {
     var newCognome = prompt("Nuovo anno di scadenza (YY): ");
-    if (parseInt(newCognome)>21) {
+    if (parseInt(newCognome) > 21) {
         document.getElementById("expA").innerHTML = newCognome
 
         var data = JSON.parse(localStorage["utente"])
@@ -154,7 +159,7 @@ function modificaAnno() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
-    }else{
+    } else {
         alert("Anno non valido")
     }
 }
@@ -177,21 +182,75 @@ function modificaCvv() {
         }
         localStorage.setItem("data", JSON.stringify(d));
 
-    }else{
+    } else {
         alert("CVV non valido")
     }
 }
-function deleteProfile(){
+
+function modificaNumero() {
+    var newCognome = prompt("Nuovo numero di telefono: ");
+    if (newCognome.match("^\s*-?[0-9]{10,11}\s*$")) {
+        document.getElementById("cellulare").innerHTML = newCognome
+
+        var data = JSON.parse(localStorage["utente"])
+        data.cellulare = newCognome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        d = JSON.parse(localStorage.getItem("data"));
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+
+    } else {
+        alert("Numero di telefono non valido")
+    }
+}
+
+function modificaIndirizzo() {
+    var utente = JSON.parse(localStorage["utente"])
+
+    if ($("#via").val() != "" && $("#zip").val() != null && $("#zip").length == 5 && $("#formIndirizzo").val() != "") {
+        data.indirizzo.via = $("#via").val()
+        data.indirizzo.provincia = $("#zip").val()
+        data.indirizzo.zip = $("#formIndirizzo").val()
+
+        //aggiorna display indirizzo
+        document.getElementById("indirizzo").innerHTML = data.indirizzo.via + ", " + data.indirizzo.zip + ", " + data.indirizzo.provincia
+
+        //salva nel localstorage
+        for (i = 0; i < data.length; i++) {
+            if (data[i].email == utente.email) {
+                data[i] = utente
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(data));
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        $('#exampleModal').modal('hide');
+    }else{
+        $('#exampleModal').modal('hide');
+        alert("Indirizzo non valido")
+    }
+
+
+
+}
+
+function deleteProfile() {
     var data = JSON.parse(localStorage["data"])
     var utente = JSON.parse(localStorage["utente"])
     var newData = []
 
-    for(var i=0; i<data.length; i++){
-        if(data[i].email != utente.email){
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].email != utente.email) {
             newData.push(data[i])
         }
     }
-    
+
     localStorage.setItem('data', JSON.stringify(newData));
     localStorage.removeItem("utente");
     console.log("Profilo cancellato");
