@@ -210,6 +210,52 @@ function modificaNumero() {
     }
 }
 
+function modificaCarta(){
+    var nomeCarta = document.getElementById("cc-name").value;
+    var numeroCarta = document.getElementById("cc-number").value;
+    var expM = document.getElementById("cc-expiration-M").value;
+    var expY = document.getElementById("cc-expiration-Y").value;
+    var cvv = document.getElementById("cc-cvv").value;
+
+    var utente = JSON.parse(localStorage["utente"])
+    var data = JSON.parse(localStorage.getItem("data"));
+
+    var dataScadenza = new Date(parseInt(expY), parseInt(expM)-1, 0)
+    var now = Date.now()
+    if(dataScadenza < now){
+        validCard=false
+        alert("Carta scaduta")
+        $('#cardModal').modal('hide');
+    }else if(numeroCarta.length != 16 ){
+        validCard=false
+        alert("Carta non valida")
+        $('#cardModal').modal('hide');
+    }else {
+        $('#cardModal').modal('hide');
+
+        utente.dettagliPAgamento.cvv = cvv
+        utente.dettagliPAgamento.expM = expM
+        utente.dettagliPAgamento.expY= expY
+        utente.dettagliPAgamento.nomeCarta= nomeCarta
+        utente.dettagliPAgamento.numeroCarta = numeroCarta
+
+        $("#numeroCarta").text(numeroCarta)
+        $("#Intestatario").text(nomeCarta)
+        $("#expM").text(expM)
+        $("#expA").text(expY)
+        $("#cvv").text(cvv)
+
+        for (i = 0; i < data.length; i++) {
+            if (data[i].email == utente.email) {
+                data[i] = utente
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(data));
+        localStorage.setItem('utente', JSON.stringify(utente));
+    }
+
+}
+
 function modificaIndirizzo() {
     var utente = JSON.parse(localStorage["utente"])
 
@@ -230,7 +276,7 @@ function modificaIndirizzo() {
         localStorage.setItem("data", JSON.stringify(data));
         localStorage.setItem('utente', JSON.stringify(data));
 
-        $('#exampleModal').modal('hide');
+
     }else{
         $('#exampleModal').modal('hide');
         alert("Indirizzo non valido")
