@@ -143,7 +143,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   const content = `
 </div>
 <div class="card movie_card">
-<img id="palinsesto-poster-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="palinsesto-poster-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="..." onclick="window.location.href='shop_movie_info.html?id=${idx}'">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
@@ -197,7 +197,7 @@ function displaySearchResult(result, idx, container) {
   const content = `
 </div>
 <div class="card movie_card">
-<img id="poster-${idx}"src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="...">
+<img id="poster-${idx}"src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="..." onclick="window.location.href='shop_search_info.html?id=${idx}'">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
    <span class="movie_info" id="date-${idx}">${new Date(result.release_date).getFullYear()}</span>
