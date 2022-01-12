@@ -20,8 +20,7 @@ $('document').ready(function () {
     $("#title").append(response.title)
 
     response.genres.forEach(element => {
-      $("#generes").append(element.name)
-      $("#generes").append(" ")
+      $("#generes").append("<span class='badge badge-pill badge-info'>" + element.name + "</span>");
     });
 
 
@@ -34,10 +33,14 @@ $('document').ready(function () {
 
     getActors(id, e => {
       console.log(e);
-      e.cast.forEach(element => {
-        $("#actors").append(element.name)
-        $("#actors").append(" ")
-
+      e.cast.forEach(function(element, i){
+        if(i === e.cast.length - 1){
+          $("#actors").append(element.name)
+        }else{
+          $("#actors").append(element.name)
+          $("#actors").append(", ")
+        }
+        i++
       });
 
     e.crew.forEach(element => {
