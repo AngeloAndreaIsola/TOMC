@@ -22,9 +22,11 @@
 
 
 var type = 'utente'
+var regexPiva = /^[0-9]{11}$/
+var regexCell = /^[0-9]+\/[0-9]+$/
 
-//TODO: verificare boostrap e jquery in html
-//TODO: Aggiungere uid ad utente
+
+
 function registerUser() {
     var registerNome = document.getElementById("firstName").value;
     var registerCognome = document.getElementById("lastName").value;
@@ -87,9 +89,33 @@ function registerUser() {
         zip:""
     }
 
+    /*
+    controlli input:
+    mial non gia in uso 
+    passwoed >3
+    instestatario nome e cognome
+    carta 16 caratteri
+    scadenza mese MM e 1<x<12
+    scadenza anno YY e >21
+
+    nome shop unico
+    cellulare = 10
+    priva = 11
+
+    */
+
     //Controllo su input
     var validName = true;
     var validPsw = true;
+    var validCard = true
+
+    var dataScadenza = new Date(parseInt(expY), parseInt(expM)-1, 0)
+    var now = Date.now()
+    if(dataScadenza < now){
+        validCard=false
+        alert("Carta scaduta")
+    }
+
     
     for (var i = 0; i < data.length; i++) {
         // check if new username is equal to any already created usernames
@@ -111,14 +137,8 @@ function registerUser() {
             // check if new password is 8 characters or more
         }
 
-        if (data[i].type=="shop" && piva == data[i].piva) {
-            // alert user that the username is take
-            alert('Partita IVA gia registrata')
-            // stop the statement if result is found true
-            validName = false
-            break
-            // check if new password is 8 characters or more
-        }
+        
+
     }
 
 
@@ -128,8 +148,7 @@ function registerUser() {
         // stop the statement if result is found true
         validPsw = false
     }
-
-    if (type == 'utente' && validName == true && validPsw == true) {
+    if (type == 'utente' && validName == true && validPsw == true && validCard) {
         newUser.email = registerEmail
         newUser.name = registerNome
         newUser.lastname = registerCognome
@@ -146,7 +165,7 @@ function registerUser() {
         localStorage.setItem('data', JSON.stringify(data));
         localStorage.setItem('utente', JSON.stringify(newUser));
         window.location.replace("./user_home.html");
-    } else if(validName == true && validPsw == true) {
+    } else if(validName == true && validPsw == true &&validCard) {
         newShop.email = registerEmail
         newShop.name = registerNome
         newShop.lastname = registerCognome
@@ -159,6 +178,7 @@ function registerUser() {
         newShop.dettagliPAgamento.nomeCarta= nomeCarta
         newShop.dettagliPAgamento.numeroCarta= numeroCarta
 
+        newShop.shopName = shopName
         newShop.partitaIVA = piva
         newShop.numero = numero
         newShop.indirizzo =  addres
@@ -187,7 +207,7 @@ function togleRegisterNegozio() {
         registerSelectType.firstChild.data = "Sei un utente standard?"
         $("#shop").attr("required", true);
         $("#address").attr("required", true);
-        $("#country").attr("required", true);
+        $("#prov").attr("required", true);
         $("#zip").attr("required", true);
         $("#PIVA").attr("required", true);
         $("#number").attr("required", true);

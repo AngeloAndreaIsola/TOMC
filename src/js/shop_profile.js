@@ -11,12 +11,12 @@ $('document').ready(function () {
     document.getElementById("profileLastname").innerHTML = data.lastname;
     document.getElementById("profileEmail").innerHTML = data.email;
     document.getElementById("profileShopName").innerHTML = data.shopName;
-    document.getElementById("profilePIVA").innerHTML = data.partitiaIVA;
-    document.getElementById("cellulare").innerHTML = data.cellulare;
-    document.getElementById("indirizzo").innerHTML = data.indirizzo.via + ", " + data.indirizzo.zip + ", " + data.indirizzo.provincia
-    console.log(data.indirizzo.via);
-    console.log(data.indirizzo.provincia);
-    console.log(data.indirizzo.zip);
+    document.getElementById("profilePIVA").innerHTML = data.partitaIVA;
+    document.getElementById("cellulare").innerHTML = data.numero;
+    document.getElementById("indirizzo").innerHTML = data.indirizzo + ", " + data.zip + ", " + data.provincia
+    console.log(data.indirizzo);
+    console.log(data.provincia);
+    console.log(data.zip);
 
     document.getElementById("numeroCarta").innerHTML = data.dettagliPAgamento.numeroCarta;
     document.getElementById("Intestatario").innerHTML = data.dettagliPAgamento.nomeCarta;

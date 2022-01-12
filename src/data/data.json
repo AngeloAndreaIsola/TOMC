@@ -11,10 +11,10 @@
          "expY": "23",
          "cvv": "111"
      },
-     "indirizzo":{
-        "provincia":"Milano",
-        "zip":"20019",
-        "via":"Via garibaldi 19"
+     "indirizzo": {
+         "provincia": "Milano",
+         "zip": "20019",
+         "via": "Via garibaldi 19"
      },
      "fimlComprati": [{
          "id": "550",
@@ -44,15 +44,13 @@
      "name": "Andrea",
      "lastname": "Rossi",
      "shopName": "BlockBuster Piacenza",
-     "partitiaIVA": "86334519757",
+     "partitaIVA": "86334519757",
      "email": "andrea.rossi@me.com",
      "password": "1234",
-     "cellulare":"3373888674",
-     "indirizzo":{
-        "provincia":"Milano",
-        "zip":"20019",
-        "via":"Via garibaldi 19"
-     },
+     "cellulare": "3373888674",
+     "provincia": "Milano",
+     "zip": "20019",
+     "indirizzo": "Via garibaldi 19",
      "palinsesto": [{
          "id": "497",
          "price": "999",
@@ -91,55 +89,53 @@
          "date": "2022-01-02 19:29:57"
      }],
      "dettagliPAgamento": {
-        "nomeCarta": "Andrea Isola",
-        "numeroCarta": "4485686440874909",
-        "expM": "10",
-        "expY": "23",
-        "cvv": "111"
-    }
+         "nomeCarta": "Andrea Isola",
+         "numeroCarta": "4485686440874909",
+         "expM": "10",
+         "expY": "23",
+         "cvv": "111"
+     }
  }, {
      "type": "shop",
      "name": "Matteo",
      "lastname": "Bianchi",
      "shopName": "BlockBuster Milano",
-     "partitiaIVA": "86334519757",
+     "partitaIVA": "86334519757",
      "email": "matteo.bianchi@me.com",
      "password": "1234",
-     "cellulare":"3373888674",
-     "indirizzo":{
-        "provincia":"Milano",
-        "zip":"20019",
-        "via":"Via garibaldi 19"
-     },
+     "cellulare": "3373888674",
+     "provincia": "Milano",
+     "zip": "20019",
+     "indirizzo": "Via garibaldi 19",
      "palinsesto": [{
          "id": "77",
          "price": "999",
          "priceRent": "599",
          "shop": "BlockBuster Milano"
-     },{
-        "id": "103",
-        "price": "999",
-        "priceRent": "599",
-        "shop": "BlockBuster Milano"
-    }],
+     }, {
+         "id": "103",
+         "price": "999",
+         "priceRent": "599",
+         "shop": "BlockBuster Milano"
+     }],
      "vendite": [{
-         "id": "557",
-         "price": "9,99",
-         "type": "acquisto",
-         "date": "2022-01-02 19:29:57"
-     },
-     {
-        "id": "557",
-        "price": "999",
-        "type": "noleggio",
-        "date": "2022-01-02 19:29:57"
-    }
-    ],
+             "id": "557",
+             "price": "9,99",
+             "type": "acquisto",
+             "date": "2022-01-02 19:29:57"
+         },
+         {
+             "id": "557",
+             "price": "999",
+             "type": "noleggio",
+             "date": "2022-01-02 19:29:57"
+         }
+     ],
      "dettagliPAgamento": {
-        "nomeCarta": "Andrea Isola",
-        "numeroCarta": "4485686440874909",
-        "expM": "10",
-        "expY": "23",
-        "cvv": "111"
-    }
+         "nomeCarta": "Andrea Isola",
+         "numeroCarta": "4485686440874909",
+         "expM": "10",
+         "expY": "23",
+         "cvv": "111"
+     }
  }]

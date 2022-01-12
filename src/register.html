@@ -26,7 +26,7 @@
 
   <div class="container">
     <h1>Registrazione</h1>
-    <form class="needs-validation" novalidate="" onsubmit="return registerUser()">
+    <form class="needs-validation" id="register" novalidate="" onsubmit="return registerUser()">
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="firstName">Nome</label>
@@ -76,7 +76,7 @@
       <div style="display: none;" id="registerNegoziante">
         <div class="mb-3">
           <label for="shop">Nome negozio</label>
-          <input type="text" class="form-control" id="shop" placeholder="Blockbuster Roma">
+          <input type="text" class="form-control" id="shop">
           <div class="invalid-feedback">
             Inserisci il nome del nogozio.
           </div>
@@ -106,7 +106,7 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="zip">Zip</label>
-            <input type="number" class="form-control" id="zip" placeholder="" minlength="5" maxlength="5">
+            <input type="number" class="form-control" id="zip" placeholder="" minlength="3" maxlength="5">
             <div class="invalid-feedback">
               Zip code richiesto.
             </div>
@@ -115,8 +115,10 @@
 
         <div class="mb-3">
           <label for="PIVA">Partita IVA</label>
-          <input type="number" class="form-control" id="PIVA" placeholder="1111111111111111111111" minlength="11"
-            maxlength="11">
+          <!-- <input type="number" class="form-control" id="PIVA" minlength="11"  pattern="[0-9]{11}"
+            onKeyPress="if(this.value.length ==11) return false;" data-value-missing="A credit card number is required" data-pattern-mismatch="The credit card number must be 16 digits"/> -->
+            <input type="text" class="form-control" name="PIVA" id="PIVA" pattern="[0-9]{16}" data-value-missing="Partitia iva richesta" data-pattern-mismatch="La partita iva deve are 11 cifre" onKeyPress="if(this.value.length ==11) return false;">
+
           <div class="invalid-feedback">
             Partita IVA richiesta
           </div>
@@ -124,8 +126,7 @@
 
         <div class="mb-3">
           <label for="number">Numero</label>
-          <input type="number" class="form-control" id="number" placeholder="2272777853" minlength="10"
-            max="9999999999">
+          <input type="tel" class="form-control" id="number" placeholder="" minlength="10" maxlength="10">
           <div class="invalid-feedback">
             Numero di telefono richiesto
           </div>
@@ -147,7 +148,13 @@
         </div>
         <div class="col-md-6 mb-3">
           <label for="cc-number">Numero carta di credito</label>
-          <input type="number" class="form-control" id="cc-number" placeholder="" required="" maxlength="16">
+
+          <!-- <input type="number" class="form-control" id="cc-number" placeholder="" required="" maxlength="16"
+            onKeyPress="if(this.value.length ==16) return false;"> -->
+
+            <input type="text" class="form-control" name="cc-number" id="cc-number" required="" pattern="[0-9]{16}" data-value-missing="Numero di cartaa richiesto" data-pattern-mismatch="Il numero di carta deve essere di 16 cifre" onKeyPress="if(this.value.length ==16) return false;">
+
+
           <div class="invalid-feedback">
             Numero di carta è richiesto
           </div>
@@ -156,15 +163,14 @@
       <div class="row">
         <div class="col-md-2 mb-1">
           <label for="cc-expiration">Scad. M</label>
-          <input type="number" class="form-control" id="cc-expiration-M" placeholder="" required="" max="12" min='1'>
+          <input type="number" class="form-control" id="cc-expiration-M" placeholder="" required="" pattern="0[1-9]|1[0-2]]" data-value-missing="Mese di scadenza richiesto" data-pattern-mismatch="Deve essere in: MM" onKeyPress="if(this.value.length ==2) return false;">
           <div class="invalid-feedback">
             Anno di scadenza è richiesto
           </div>
         </div>
         <div class="col-md-2 mb-1">
           <label for="cc-expiration">Scad. A</label>
-          <input type="number" class="form-control" id="cc-expiration-Y" placeholder="" required="" max='3000'
-            min='2022'>
+          <input type="number" class="form-control" id="cc-expiration-Y" placeholder="" required="" data-value-missing="Anno di scadenza richiesto" data-pattern-mismatch="Deve essere in: YY" onKeyPress="if(this.value.length ==4) return false;">
           <div class="invalid-feedback">
             Mese di scadenza è richiesto
           </div>
@@ -200,6 +206,21 @@
             if (form.checkValidity() === false) {
               event.preventDefault();
               event.stopPropagation();
+
+              var ele = form.getElementsByTagName("input")
+              for (var i = 0; i < ele.length; i++) {
+                var msg = "",
+                  reason = ele[i].validity;
+                if (reason.valueMissing) {
+                  msg = ele[i].getAttribute("data-value-missing");
+                } else if (reason.patternMismatch) {
+                  msg = ele[i].getAttribute("data-pattern-mismatch");
+                } else {
+                  // other reason...
+                }
+                ele[i].nextElementSibling.innerText = msg;
+              }
+
             }
             form.classList.add('was-validated');
           }, false);
