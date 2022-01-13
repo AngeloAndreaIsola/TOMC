@@ -98,9 +98,7 @@ function removeMovieFromCart(idx) {
   $("#tabellaCarrello-body tr").remove()
 
   //aggiorna view del carrello 
-  storedMovies.forEach(element => {
-    displayMovieInCart(element.id)
-  })
+  initCart()
 }
 
 
@@ -169,4 +167,37 @@ function addToStat(obj, shop) {
   })
   localStorage.setItem("data", JSON.stringify(data))
   console.log("Aggiunto ventita a statiste venditore");
+}
+
+function initCart(){
+  var movieArray = []
+  var data = JSON.parse(localStorage["data"])
+  data.forEach(element => {
+    if (element.type == "shop") {
+      for (var i = 0; i < element.palinsesto.length; i++) {
+        o = {
+          "movie": element.palinsesto[i],
+          "shop": element.shopName
+        }
+        movieArray.push(o)
+        //movieArray.push(element.palinsesto[i])
+      }
+    }
+  })
+  console.log("Movie Array");
+  console.log(movieArray)
+
+
+  var storedMovies = JSON.parse(localStorage.getItem("cart"));
+  if (storedMovies == null || storedMovies == undefined) {
+    $("#cartButton").prop("disabled", true);
+  } else {
+    $("#cartButton").prop("disabled", false);
+    storedMovies.forEach(element => {
+      //display movie in cart
+      getMovie(element.id, response => {
+        displayMovieInCart(element.id, element.type, element, response.title)
+      })
+    })
+  }
 }
