@@ -4,7 +4,7 @@ $('document').ready(function () {
     var settimana = new Date().getTime() + (60 * 60 * 1000 * 168);
     var mese = new Date().getTime() + (60 * 60 * 1000 * 720);
     var now = new Date().getTime();
-    var guadagniMensili =0, guadagniSettimanali =0, guadagniMensiliAcquisto =0, guadagniMensiliNoleggio =0
+    var guadagniMensili =0, guadagniSettimanali =0, guadagniMensiliAcquisto =0, guadagniMensiliNoleggio =0, guadagniSettimanaliAcquisto =0, guadagniSettimanaliNoleggio=0
     console.log(utente.vendite);
 
     if( JSON.parse(localStorage.getItem("utente")) != null || JSON.parse(localStorage.getItem("utente")) != undefined){
@@ -23,6 +23,12 @@ $('document').ready(function () {
     
             if(dataVendita<settimana){
                 guadagniSettimanali += parseInt(element.price)
+
+                if(element.type=="noleggio"){
+                    guadagniSettimanaliNoleggio += parseInt(element.price)
+                }else{
+                    guadagniSettimanaliAcquisto += parseInt(element.price)
+                }
             }
         });
     }
@@ -37,5 +43,10 @@ $('document').ready(function () {
     $('#incassiMensili').append(guadagniMensili/100)
     $('#incassiMensiliAcquisto').append(guadagniMensiliAcquisto/100)
     $('#incassiMensiliNoleggio').append(guadagniMensiliNoleggio/100)
+    $('#incassiSettimanaliAcquisto').append(guadagniSettimanaliAcquisto/100)
+    $('#incassiSettimanaliNoleggio').append(guadagniSettimanaliNoleggio/100)
+
+    
+
     
 })
