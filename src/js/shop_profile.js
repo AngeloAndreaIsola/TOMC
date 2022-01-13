@@ -72,6 +72,39 @@ function modificaCognome() {
     }
 }
 
+function modificaNomeNegozio() {
+    var newNome = prompt("Nuovo nome negozio: ");
+    d = JSON.parse(localStorage.getItem("data"));
+
+    for (i = 0; i < d.length; i++) {
+        if (d[i].type == "shop" && d[i].shopName == newNome) {
+            alert("Nome negozio già usato")
+            return
+        }
+    }
+
+
+
+    if (newNome !=null & newNome.length>0) {
+        document.getElementById("profileShopName").innerHTML = newNome
+        
+        //salva cambiamento per utente
+        var data = JSON.parse(localStorage["utente"])
+        data.shopName = newNome
+        localStorage.setItem('utente', JSON.stringify(data));
+
+        //salva cambiamento in data
+        for (i = 0; i < d.length; i++) {
+            if (d[i].email == data.email) {
+                d[i] = data
+            }
+        }
+        localStorage.setItem("data", JSON.stringify(d));
+    } else {
+        alert("Nome negozio non valido")
+    }
+}
+
 function modificaNumeroCarta() {
     var newCognome = prompt("Nuovo numero carta: ");
     if (newCognome.match("^\s*-?[0-9]{16,17}\s*$")) {
@@ -210,7 +243,7 @@ function modificaNumero() {
     }
 }
 
-function modificaCarta(){
+function modificaCarta() {
     var nomeCarta = document.getElementById("cc-name").value;
     var numeroCarta = document.getElementById("cc-number").value;
     var expM = document.getElementById("cc-expiration-M").value;
@@ -220,23 +253,23 @@ function modificaCarta(){
     var utente = JSON.parse(localStorage["utente"])
     var data = JSON.parse(localStorage.getItem("data"));
 
-    var dataScadenza = new Date(parseInt(expY), parseInt(expM)-1, 0)
+    var dataScadenza = new Date(parseInt(expY), parseInt(expM) - 1, 0)
     var now = Date.now()
-    if(dataScadenza < now){
-        validCard=false
+    if (dataScadenza < now) {
+        validCard = false
         alert("Carta scaduta")
         $('#cardModal').modal('hide');
-    }else if(numeroCarta.length != 16 ){
-        validCard=false
+    } else if (numeroCarta.length != 16) {
+        validCard = false
         alert("Carta non valida")
         $('#cardModal').modal('hide');
-    }else {
+    } else {
         $('#cardModal').modal('hide');
 
         utente.dettagliPAgamento.cvv = cvv
         utente.dettagliPAgamento.expM = expM
-        utente.dettagliPAgamento.expY= expY
-        utente.dettagliPAgamento.nomeCarta= nomeCarta
+        utente.dettagliPAgamento.expY = expY
+        utente.dettagliPAgamento.nomeCarta = nomeCarta
         utente.dettagliPAgamento.numeroCarta = numeroCarta
 
         $("#numeroCarta").text(numeroCarta)
@@ -258,14 +291,17 @@ function modificaCarta(){
 
 function modificaIndirizzo() {
     var utente = JSON.parse(localStorage["utente"])
+    console.log($("#via").val());
+    console.log($("#zip").val());
+    console.log($("#formIndirizzo").val());
 
-    if ($("#via").val() != "" && $("#zip").val() != null && $("#zip").length == 5 && $("#formIndirizzo").val() != "") {
-        data.indirizzo.via = $("#via").val()
-        data.indirizzo.provincia = $("#zip").val()
-        data.indirizzo.zip = $("#formIndirizzo").val()
+    if ($("#via").val() != null && $("#formIndirizzo").val() != null && $("#zip").val() != null) {
+        data.indirizzo = $("#via").val()
+        data.provincia = $("#formIndirizzo").val()
+        data.zip = $("#zip").val()
 
         //aggiorna display indirizzo
-        document.getElementById("indirizzo").innerHTML = data.indirizzo.via + ", " + data.indirizzo.zip + ", " + data.indirizzo.provincia
+        document.getElementById("indirizzo").innerHTML = data.indirizzo + ", " + data.zip + ", " + data.provincia
 
         //salva nel localstorage
         for (i = 0; i < data.length; i++) {
@@ -274,10 +310,10 @@ function modificaIndirizzo() {
             }
         }
         localStorage.setItem("data", JSON.stringify(data));
-        localStorage.setItem('utente', JSON.stringify(data));
+        localStorage.setItem('utente', JSON.stringify(utente));
+        $('#exampleModal').modal('hide');
 
-
-    }else{
+    } else {
         $('#exampleModal').modal('hide');
         alert("Indirizzo non valido")
     }
