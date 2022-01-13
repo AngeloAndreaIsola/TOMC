@@ -4,7 +4,7 @@ const BASE_URL_IMG = 'https://image.tmdb.org/t/p/original/'
 const BASE_URL_SEARCH = 'https://api.themoviedb.org/3/search/multi'
 const API_URL = BASE_URL + "550" + API_KEY
 const searchURL = BASE_URL + '/search/movie' + API_KEY;
-const searchActorURL = "http://api.themoviedb.org/3/person/" 
+const searchActorURL = "http://api.themoviedb.org/3/person/"
 const container = document.getElementById("palinsesto");
 const risultatoRicerca = document.getElementById("risultati_ricerca");
 const form = document.getElementById('addMovieForm');
@@ -46,7 +46,7 @@ $('document').ready(function () {
     searchMovie(search.value, response => {
       console.log(response);
       response.results.forEach(element => {
-        if(element.media_type == "person"){
+        if (element.media_type == "person") {
           searchActor(element.id, res => {
             console.log("RICERCA ATTORE:");
             console.log(res);
@@ -55,7 +55,7 @@ $('document').ready(function () {
             })
           })
 
-        }else{
+        } else {
           displaySearchResult(element, element.id, risultatoRicerca)
         }
       })
@@ -70,7 +70,7 @@ function searchMovie(keyword, callback) {
   keyword = keyword.replace(/ /g, "+");
   $.ajax({
     type: "GET",
-    url: BASE_URL_SEARCH + API_KEY + "&query=" + keyword +"&language=it",
+    url: BASE_URL_SEARCH + API_KEY + "&query=" + keyword + "&language=it",
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
@@ -81,10 +81,10 @@ function searchMovie(keyword, callback) {
 
 function searchActor(id, callback) {
   //sostiusce spazi con +
-//http://api.themoviedb.org/3/person/62/movie_credits?api_key=###
+  //http://api.themoviedb.org/3/person/62/movie_credits?api_key=###
   $.ajax({
     type: "GET",
-    url: searchActorURL+id+"/movie_credits"+API_KEY+"&language=it",
+    url: searchActorURL + id + "/movie_credits" + API_KEY + "&language=it",
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
@@ -108,7 +108,7 @@ function searchKong(callback) {
 function getMovie(code, callback) {
   $.ajax({
     type: "GET",
-    url: BASE_URL + code + API_KEY +"&language=it",
+    url: BASE_URL + code + API_KEY + "&language=it",
     data: JSON.stringify({}),
     success: callback,
     error: function (error) {
@@ -142,7 +142,7 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
   // Construct card content
   const content = `
 </div>
-<div class="card movie_card">
+<div class="card movie_card" id="card-${idx}">
 <img id="palinsesto-poster-${idx}" src="${BASE_URL_IMG + result.poster_path}" class="card-img-top" alt="..." onclick="window.location.href='shop_movie_info.html?id=${idx}'">
 <div class="card-body">
 <h5 class="card-title">${result.title}</h5>
@@ -181,10 +181,10 @@ function displayPalinsesto(result, idx, container, date, rentPrice, buyPrice) {
 `;
 
   // Append newyly created card element to the container
-  container.innerHTML += content; 
+  container.innerHTML += content;
 
-  if(result.poster_path==null || result.poster_path == undefined){
-    $("#palinsesto-poster-"+idx).attr("src","https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+  if (result.poster_path == null || result.poster_path == undefined) {
+    $("#palinsesto-poster-" + idx).attr("src", "https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
   }
 
 }
@@ -216,15 +216,15 @@ function displaySearchResult(result, idx, container) {
   // Append newyly created card element to the container
   container.innerHTML += content;
   palinsesto.forEach(element => {
-    if(element.id == idx){
-      $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+    if (element.id == idx) {
+      $("#shopAddMovieToCart-" + idx).prop("disabled", true);
     }
   })
 
   //se è gia acquistato non lo fa aggingeere
   palinsesto.forEach(element => {
-    if(element.id == idx){
-      $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+    if (element.id == idx) {
+      $("#shopAddMovieToCart-" + idx).prop("disabled", true);
     }
   })
 
@@ -232,14 +232,14 @@ function displaySearchResult(result, idx, container) {
   if (JSON.parse(localStorage.getItem("shopCart")) != null) { //copia i film
     carello = JSON.parse(localStorage.getItem("shopCart"))
     carello.forEach(element => {
-      if(element.id == idx){
-        $("#shopAddMovieToCart-"+idx).prop("disabled",true);
+      if (element.id == idx) {
+        $("#shopAddMovieToCart-" + idx).prop("disabled", true);
       }
     })
   }
 
-  if(result.poster_path==null || result.poster_path == undefined){
-    $("#poster-"+idx).attr("src","https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
+  if (result.poster_path == null || result.poster_path == undefined) {
+    $("#poster-" + idx).attr("src", "https://www.mastromediapix.it/88819-large_default/caruba-ciak-cinematografico.jpg");
   }
 }
 
@@ -262,7 +262,7 @@ function addMovieToCart(id) {
   console.log("FIlm nel carrello: ")
   console.log(JSON.parse(localStorage.getItem("shopCart")));
 
-  $("#shopAddMovieToCart-"+id).prop("disabled",true);
+  $("#shopAddMovieToCart-" + id).prop("disabled", true);
 }
 
 function removeMovieFromPalinsesto(id) {
@@ -289,16 +289,16 @@ function removeMovieFromPalinsesto(id) {
 
   $("#card-" + id).remove()
 
-  console.log(id + " rimosso dal palinsesto");
 
+  console.log(id + " rimosso dal palinsesto");
 }
 
 function modifyBuyPrice(id) {
   console.log("modificando prezzo acquisto di:  " + id);
 
   var newCognome = prompt("Nuovo prezzo di acquisto (intero in centesimi): ");
-  if (newCognome.match('^[0-9]*[1-9][0-9]*$')) {  //newCognome != null || newCognome == "" || newCognome == "" &&
-    document.getElementById("buyPrice-" + id).innerHTML = "prezzo acquisto: " + newCognome/100
+  if (newCognome.match('^[0-9]*[1-9][0-9]*$')) { //newCognome != null || newCognome == "" || newCognome == "" &&
+    document.getElementById("buyPrice-" + id).innerHTML = "prezzo acquisto: " + newCognome / 100
 
     var utente = JSON.parse(localStorage.getItem("utente"));
     utente.palinsesto.forEach(element => {
@@ -309,14 +309,14 @@ function modifyBuyPrice(id) {
     localStorage.setItem('utente', JSON.stringify(utente));
 
     var data = JSON.parse(localStorage.getItem("data"));
-    for(var i=0; i<data.length; i++) {
-      if(data[i].email == utente.email){
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].email == utente.email) {
         console.log("trovato");
         data[i] = utente
       }
     }
     localStorage.setItem('data', JSON.stringify(data));
-  }else{
+  } else {
     alert("Prezzo non valido")
   }
 }
@@ -325,7 +325,7 @@ function modifyRentPrice(id) {
   console.log("modificando prezzo noleggio di:  " + id);
   var newCognome = prompt("Nuovo prezzo di noleggio (intero in centesimi): ");
   if (newCognome.match('^[0-9]*[1-9][0-9]*$')) {
-    document.getElementById("rentPrice-" + id).innerHTML = "prezzo noleggio: " + newCognome/100
+    document.getElementById("rentPrice-" + id).innerHTML = "prezzo noleggio: " + newCognome / 100
 
     var utente = JSON.parse(localStorage.getItem("utente"));
     utente.palinsesto.forEach(element => {
@@ -336,8 +336,8 @@ function modifyRentPrice(id) {
     localStorage.setItem('utente', JSON.stringify(utente));
 
     var data = JSON.parse(localStorage.getItem("data"));
-    for(var i=0; i<data.length; i++) {
-      if(data[i].email == utente.email){
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].email == utente.email) {
         console.log("trovato");
         data[i] = utente
       }
@@ -345,4 +345,20 @@ function modifyRentPrice(id) {
     localStorage.setItem('data', JSON.stringify(data));
   }
 
+}
+
+function initPalinsesto() {
+  $("#palinsesto").empty();
+
+  //mostra palinsesto
+  palinsesto.forEach(element => {
+    getMovie(element.id, (response) => {
+      //console.log(response);
+      displayPalinsesto(response, response.id, container, element.date, element.priceRent, element.price)
+      getMoviePoster(response.poster_path, (responseBis) => {
+        $('#moviePoster').append(responseBis)
+        //console.log(responseBis);
+      })
+    })
+  });
 }
