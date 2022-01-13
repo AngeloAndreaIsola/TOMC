@@ -5,7 +5,7 @@ const API_KEY = '?api_key=18cad5ee1c5382a869938ad511f2f321'
 
 $('document').ready(function () {
   console.log("Document ready!");
-  if(localStorage["cart"] != null || localStorage["cart"]!=undefined){
+  if (localStorage["cart"] != null || localStorage["cart"] != undefined) {
     console.log("Film nel carrello:");
     console.log(JSON.parse(localStorage.getItem("cart")));
   }
@@ -30,14 +30,14 @@ $('document').ready(function () {
 
 
   var storedMovies = JSON.parse(localStorage.getItem("cart"));
-  if (storedMovies == null || storedMovies == undefined){
-    $("#cartButton").prop("disabled",true);
+  if (storedMovies == null || storedMovies == undefined) {
+    $("#cartButton").prop("disabled", true);
   } else {
-    $("#cartButton").prop("disabled",false);
+    $("#cartButton").prop("disabled", false);
     storedMovies.forEach(element => {
       //display movie in cart
       getMovie(element.id, response => {
-        displayMovieInCart(element.id, element.type,element, response.title)
+        displayMovieInCart(element.id, element.type, element, response.title)
       })
     })
   }
@@ -103,7 +103,7 @@ function removeMovieFromCart(idx) {
   })
 }
 
-//TODO: IMPEDIRE DI COMPRARE UN FILM GIA ACQUISTATO O DI NOLGGIARE FIML ANCORA IN NOLEGGIO
+
 function purchaese() {
   var o
   var cart = JSON.parse(localStorage.getItem("cart"));
@@ -122,18 +122,18 @@ function purchaese() {
       "date": now,
       "price": element.price
     }
-    
+
     //se è gia noelggiato acquista
-    for(var i=0; i<libreria.filmNoleggiati.length; i++){
-      if(o.id==libreria.filmNoleggiati[i].id && element.type == "acquisto"){
-        libreria.filmNoleggiati.splice(i,1);
+    for (var i = 0; i < libreria.filmNoleggiati.length; i++) {
+      if (o.id == libreria.filmNoleggiati[i].id && element.type == "acquisto") {
+        libreria.filmNoleggiati.splice(i, 1);
       }
     }
-    console.log("chiudi 3");
-    
-    if(element.type == "acquisto"){
+
+
+    if (element.type == "acquisto") {
       libreria.fimlComprati.push(o)
-    }else if (element.type == "noleggio"){
+    } else if (element.type == "noleggio") {
       libreria.filmNoleggiati.push(o)
     }
 
@@ -141,12 +141,13 @@ function purchaese() {
     libreria.history.push(o)
     console.log("Aggiungo acquisto a cronologia");
     addToStat(o, element.shop)
+    console.log("Aggiungo acquisto a vendite negozio");
   })
 
   //salva e vuota carrello
-  data =  JSON.parse(localStorage.getItem("data"));
-  for (i=0; i<data.length; i++){
-    if( data[i].email == libreria.email){
+  data = JSON.parse(localStorage.getItem("data"));
+  for (i = 0; i < data.length; i++) {
+    if (data[i].email == libreria.email) {
       data[i] = libreria
     }
   }
@@ -159,10 +160,10 @@ function purchaese() {
 
 }
 
-function addToStat(obj, shop){
+function addToStat(obj, shop) {
   var data = JSON.parse(localStorage["data"])
   data.forEach(element => {
-    if(element.shopName == shop){
+    if (element.shopName == shop) {
       element.vendite.push(obj)
     }
   })

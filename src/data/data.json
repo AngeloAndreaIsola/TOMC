@@ -85,7 +85,7 @@
      "vendite": [{
          "id": "550",
          "price": "999",
-         "type": "buy",
+         "type": "acquisto",
          "date": "2022-01-02 19:29:57"
      }],
      "dettagliPAgamento": {
