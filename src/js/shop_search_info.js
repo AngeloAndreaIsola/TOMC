@@ -121,7 +121,7 @@ function getMoviePoster(path, callback) {
     })
 }
 
-function addMovieToCart(id) {
+function addMovieToCart() {
     if (JSON.parse(localStorage.getItem("shopCart")) != null) { //copia i film
         var storedMovies = JSON.parse(localStorage.getItem("shopCart"));
         var o = {
@@ -140,5 +140,5 @@ function addMovieToCart(id) {
     console.log("FIlm nel carrello: ")
     console.log(JSON.parse(localStorage.getItem("shopCart")));
 
-    $("#shopAddMovieToCart-" + id).prop("disabled", true);
+    $("#addToCart").prop("disabled", true);
 }
